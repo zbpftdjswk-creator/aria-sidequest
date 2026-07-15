@@ -10,6 +10,7 @@ A recovery-first Year 7 learning hub with short visual sidequests, saved progres
 - seven cinematic featured episodes that rotate at local midnight
 - visual, one-tap activities with finite sessions and no autoplay
 - optional gentle sounds for opening an episode and celebrating success
+- optional BBC Bitesize bonus clips on 18 matching missions; links open in a new tab and never autoplay
 - sound is off by default, has no negative wrong-answer noise, and can be muted at any time
 - local progress, XP, rosettes, daily picks, and a 20-minute parent-controlled cap
 - responsive layouts for iPad, mobile, and desktop
@@ -23,4 +24,4 @@ A recovery-first Year 7 learning hub with short visual sidequests, saved progres
 
 ## Run locally
 
-Download `index.html` and open it in a modern browser. An internet connection is used only to load the interface icon library; learning progress stays on the device.
+Download `index.html` and open it in a modern browser. An internet connection is used to load the interface icon library and, only when selected, to open BBC Bitesize in a new tab; learning progress stays on the device.
