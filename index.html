@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="Aria's private, recovery-first Year 7 learning sidequests.">
+<meta name="description" content="Aria's recovery-first Year 7 learning sidequests.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Aria Sidequest">
 <title>Aria Sidequest</title>
 <style>:root {
   color-scheme: light dark;
@@ -1052,9 +1054,13 @@ svg {
     <div class="viz-row">
       <span class="al-avatar" aria-hidden="true">A</span>
       <span class="viz-badge al-kicker">ARIA / SIDEQUEST</span>
-      <span class="text-muted">Private by default</span>
+      <span class="text-muted">Progress stays on this device</span>
     </div>
     <div class="viz-controls" aria-label="Choose view">
+      <button class="btn" type="button" id="al-sound-toggle" aria-pressed="false" data-tooltip="Gentle sounds only after a tap; never autoplay">
+        <i data-lucide="volume-x" id="al-sound-icon" aria-hidden="true"></i>
+        <span id="al-sound-label">Sound off</span>
+      </button>
       <button class="btn btn-primary" type="button" data-view="learner" aria-pressed="true">
         <i data-lucide="sparkles" aria-hidden="true"></i>
         Aria view
@@ -1088,22 +1094,22 @@ svg {
             <span class="text-muted">My list</span>
           </div>
           <div class="viz-row">
-            <span class="text-muted"><i data-lucide="headphones" aria-hidden="true"></i> Music welcome</span>
+            <span class="text-muted"><i data-lucide="headphones" aria-hidden="true"></i> Sound optional</span>
             <span class="al-avatar" aria-label="Aria's profile">A</span>
           </div>
         </div>
 
         <div class="al-feature">
           <div class="al-stack">
-            <div class="text-small text-muted al-kicker">FEATURED FOR ARIA · NEW EPISODE</div>
+            <div class="text-small text-muted al-kicker" id="al-feature-kicker">FEATURED FOR ARIA · CHANGES DAILY</div>
             <div>
-              <h2>The Jump Equation</h2>
-              <p>A horse clears the fence. Where did the energy go? Solve one fast mystery using something you already know.</p>
+              <h2 id="al-feature-title">The Jump Equation</h2>
+              <p id="al-feature-copy">A horse clears the fence. Where did the energy go? Solve one fast mystery using something you already know.</p>
             </div>
             <div class="viz-row">
-              <span class="viz-badge al-match">98% match</span>
-              <span class="text-muted">Science</span>
-              <span class="text-muted">7 min</span>
+              <span class="viz-badge al-match" id="al-feature-match">98% match</span>
+              <span class="text-muted" id="al-feature-subject">Science</span>
+              <span class="text-muted" id="al-feature-time">7 min</span>
               <span class="text-muted">One-tap answers</span>
             </div>
             <div class="viz-row">
@@ -1118,17 +1124,15 @@ svg {
             </div>
             <div class="text-muted" id="al-feature-note" aria-live="polite"></div>
           </div>
-          <div class="al-feature-art" aria-label="Abstract cover artwork for The Jump Equation">
-            <svg viewBox="0 0 220 150" role="img" aria-labelledby="al-hero-title al-hero-desc">
-              <title id="al-hero-title">The Jump Equation cover</title>
-              <desc id="al-hero-desc">An abstract jump arc rising over a fence, representing motion and stored energy.</desc>
-              <path d="M20 118 Q88 18 176 84" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-              <circle cx="100" cy="42" r="10" fill="currentColor"/>
-              <path d="M76 65 L124 59 M92 58 L76 88 M111 61 L139 82" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-              <path d="M145 72 V126 M187 72 V126 M139 80 H193 M139 96 H193" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-              <path d="M18 128 H202" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
-            </svg>
-            <span class="viz-badge">Energy · Motion · Jump</span>
+          <div class="al-feature-art" id="al-feature-art" aria-label="Abstract cover artwork for The Jump Equation">
+            <div id="al-feature-art-visual">
+              <svg viewBox="0 0 160 90" role="img" aria-label="A curved jump path rising over a fence">
+                <path d="M12 70 Q65 10 118 52" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="70" cy="25" r="8" fill="currentColor"/>
+                <path d="M112 44 V78 M142 44 V78 M108 52 H146 M108 64 H146" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="viz-badge" id="al-feature-art-label">Energy · Motion · Jump</span>
           </div>
         </div>
 
@@ -1671,8 +1675,103 @@ svg {
       }
     ]);
 
+    var featureEpisodes = [
+      {
+        title: "The Jump Equation",
+        missionTitle: "Energy at the jump",
+        subject: "Science",
+        copy: "A horse clears the fence. Where did the energy go? Solve one fast mystery using something you already know.",
+        match: 98,
+        artLabel: "Energy · Motion · Jump",
+        why: "Picked because Aria likes horses, the answer is one tap, and the science mystery has a clear seven-minute ending.",
+        style: "midnight"
+      },
+      {
+        title: "The Stable Code",
+        missionTitle: "Feed mix quick win",
+        subject: "Maths",
+        copy: "Crack Paddy's feed ratio like a secret recipe. One pattern, one answer, then the episode ends.",
+        match: 97,
+        artLabel: "Ratio · Feed · Pattern",
+        why: "A familiar stable problem turns ratio work into a short, high-confidence puzzle with no writing required.",
+        style: "sage"
+      },
+      {
+        title: "The Locked Tack Room",
+        missionTitle: "Build suspense",
+        subject: "English",
+        copy: "Something moved behind a locked door. Choose the opening that makes you need the next line.",
+        match: 96,
+        artLabel: "Mystery · Mood · Story",
+        why: "It uses a tiny mystery and a single choice to practise suspense without asking for a full paragraph.",
+        style: "cherry"
+      },
+      {
+        title: "Ride It in French",
+        missionTitle: "Stable phrase",
+        subject: "French",
+        copy: "Decode one phrase Aria could actually use when talking about riding. No spelling test—just match the meaning.",
+        match: 94,
+        artLabel: "Speak · Match · Ride",
+        why: "The phrase connects directly to riding and can be completed by recognising meaning rather than recalling a long vocabulary list.",
+        style: "midnight"
+      },
+      {
+        title: "Storm Over the Yard",
+        missionTitle: "Plan the safest ride",
+        subject: "Geography",
+        copy: "A forecast is moving in. Read the clues and make the safest call for today's ride.",
+        match: 95,
+        artLabel: "Forecast · Decide · Ride",
+        why: "It turns weather knowledge into a real decision with a clear purpose and one definite finish point.",
+        style: "sage"
+      },
+      {
+        title: "The Norman Countdown",
+        missionTitle: "Norman timeline",
+        subject: "History",
+        copy: "Three moments. One famous year. Put the clue in its place and unlock the timeline.",
+        match: 92,
+        artLabel: "1066 · Timeline · Clue",
+        why: "The visual timeline keeps memory demands low while refreshing one important Year 7 history anchor.",
+        style: "cherry"
+      },
+      {
+        title: "Mission: Clear Instructions",
+        missionTitle: "Precise instructions",
+        subject: "Computing",
+        copy: "A computer follows exactly what it is told. Spot the instruction that cannot be misunderstood.",
+        match: 93,
+        artLabel: "Algorithm · Order · Test",
+        why: "It makes algorithms feel like a quick mission: choose the clearest instruction and finish in one step.",
+        style: "midnight"
+      }
+    ];
+
+    function localDateKey() {
+      var now = new Date();
+      var month = String(now.getMonth() + 1).padStart(2, "0");
+      var day = String(now.getDate()).padStart(2, "0");
+      return now.getFullYear() + "-" + month + "-" + day;
+    }
+
+    function localDaySeed() {
+      var now = new Date();
+      return Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
+    }
+
+    function findMission(title) {
+      var allMissions = missionSets.low.concat(missionSets.medium, missionSets.high);
+      for (var index = 0; index < allMissions.length; index += 1) {
+        if (allMissions[index].title === title) return allMissions[index];
+      }
+      return missionSets.medium[0];
+    }
+
+    var featuredEpisode = featureEpisodes[localDaySeed() % featureEpisodes.length];
+    var featuredMission = findMission(featuredEpisode.missionTitle);
     var storageKey = "aria-sidequest-production-v1";
-    var todayKey = new Date().toISOString().slice(0, 10);
+    var todayKey = localDateKey();
     var savedState = {};
     try {
       savedState = JSON.parse(window.localStorage.getItem(storageKey) || "{}");
@@ -1693,6 +1792,7 @@ svg {
       ceilingEnabled: savedState.ceilingEnabled !== false,
       noLostStreaks: savedState.noLostStreaks !== false,
       firstWin: savedState.firstWin !== false,
+      soundEnabled: savedState.soundEnabled === true,
       selected: null,
       completedThisRun: false
     };
@@ -1705,11 +1805,64 @@ svg {
     var missionsHost = root.querySelector("#al-missions");
     var quickMissionsHost = root.querySelector("#al-quick-missions");
     var feedback = root.querySelector("#al-feedback");
+    var audioContext = null;
 
     function refreshIcons() {
       if (window.lucide && typeof window.lucide.createIcons === "function") {
         window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
       }
+    }
+
+    function updateSoundControl() {
+      var button = root.querySelector("#al-sound-toggle");
+      var label = root.querySelector("#al-sound-label");
+      var icon = root.querySelector("#al-sound-icon");
+      button.setAttribute("aria-pressed", String(state.soundEnabled));
+      button.classList.toggle("btn-primary", state.soundEnabled);
+      label.textContent = state.soundEnabled ? "Sound on" : "Sound off";
+      if (icon) icon.setAttribute("data-lucide", state.soundEnabled ? "volume-2" : "volume-x");
+      refreshIcons();
+    }
+
+    function getAudioContext() {
+      var AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return null;
+      if (!audioContext) audioContext = new AudioContextClass();
+      if (audioContext.state === "suspended" && typeof audioContext.resume === "function") {
+        var resumeResult = audioContext.resume();
+        if (resumeResult && typeof resumeResult.catch === "function") resumeResult.catch(function () {});
+      }
+      return audioContext;
+    }
+
+    function playSound(kind) {
+      if (!state.soundEnabled) return;
+      var context = getAudioContext();
+      if (!context) return;
+      var patterns = {
+        on: [[440, 0, 0.07], [660, 0.07, 0.1]],
+        open: [[392, 0, 0.06], [523, 0.06, 0.09]],
+        correct: [[523, 0, 0.09], [659, 0.08, 0.09], [784, 0.16, 0.14]],
+        reward: [[659, 0, 0.08], [784, 0.07, 0.08], [988, 0.14, 0.16]],
+        tap: [[520, 0, 0.055]],
+        rest: [[440, 0, 0.08], [330, 0.08, 0.12]]
+      };
+      var notes = patterns[kind] || patterns.tap;
+      notes.forEach(function (note) {
+        var oscillator = context.createOscillator();
+        var gain = context.createGain();
+        var start = context.currentTime + note[1];
+        var duration = note[2];
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(note[0], start);
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(0.035, start + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+        oscillator.start(start);
+        oscillator.stop(start + duration + 0.02);
+      });
     }
 
     function saveState() {
@@ -1724,7 +1877,8 @@ svg {
         dailyCap: state.dailyCap,
         ceilingEnabled: state.ceilingEnabled,
         noLostStreaks: state.noLostStreaks,
-        firstWin: state.firstWin
+        firstWin: state.firstWin,
+        soundEnabled: state.soundEnabled
       };
       try {
         window.localStorage.setItem(storageKey, JSON.stringify(payload));
@@ -1745,6 +1899,7 @@ svg {
       root.querySelector("#al-ceiling").checked = state.ceilingEnabled;
       root.querySelector("#al-no-streak").checked = state.noLostStreaks;
       root.querySelector("#al-first-win").checked = state.firstWin;
+      root.querySelector("#al-feature-play").disabled = state.ceilingEnabled && state.dailyMinutes >= state.dailyCap;
     }
 
     function visualFor(item) {
@@ -1811,6 +1966,22 @@ svg {
         '</svg>';
     }
 
+    function renderFeaturedEpisode() {
+      root.setAttribute("data-style", featuredEpisode.style);
+      root.querySelector("#al-feature-kicker").textContent = "FEATURED FOR ARIA · EPISODE " +
+        (featureEpisodes.indexOf(featuredEpisode) + 1) + " OF " + featureEpisodes.length + " · CHANGES DAILY";
+      root.querySelector("#al-feature-title").textContent = featuredEpisode.title;
+      root.querySelector("#al-feature-copy").textContent = featuredEpisode.copy;
+      root.querySelector("#al-feature-match").textContent = featuredEpisode.match + "% match";
+      root.querySelector("#al-feature-subject").textContent = featuredEpisode.subject;
+      root.querySelector("#al-feature-time").textContent = featuredMission.time;
+      root.querySelector("#al-feature-art-visual").innerHTML = visualFor(featuredMission);
+      root.querySelector("#al-feature-art-label").textContent = featuredEpisode.artLabel;
+      root.querySelector("#al-feature-art").setAttribute("aria-label", "Abstract cover artwork for " + featuredEpisode.title);
+      root.querySelector("#al-feature-play").setAttribute("aria-label", "Play " + featuredEpisode.title + ", " + featuredMission.time);
+      root.querySelector("#al-feature-note").textContent = "";
+    }
+
     function renderCatalog(host, list, offset) {
       host.innerHTML = "";
       list.forEach(function (item, index) {
@@ -1841,7 +2012,7 @@ svg {
     }
 
     function dailyPicks(list, offset) {
-      var daySeed = Math.floor(new Date().getTime() / 86400000);
+      var daySeed = localDaySeed();
       var picks = [];
       var used = {};
       var cursor = (daySeed + offset) % list.length;
@@ -1871,6 +2042,7 @@ svg {
         root.querySelector("#al-energy-note").textContent = "Today's learning window is complete. Nothing resets or disappears—come back tomorrow.";
         return;
       }
+      playSound("open");
       state.selected = item;
       chooser.hidden = true;
       rewardPanel.hidden = true;
@@ -1898,6 +2070,7 @@ svg {
 
     function checkAnswer(answerIndex, answerButton) {
       if (answerIndex === state.selected.correct) {
+        playSound("correct");
         Array.prototype.forEach.call(root.querySelectorAll("#al-answers .btn"), function (button) {
           button.disabled = true;
         });
@@ -1910,6 +2083,7 @@ svg {
     }
 
     function showReward() {
+      playSound("reward");
       missionPanel.hidden = true;
       rewardPanel.hidden = false;
       if (!state.completedThisRun) {
@@ -1943,6 +2117,7 @@ svg {
 
     Array.prototype.forEach.call(root.querySelectorAll("[data-view]"), function (button) {
       button.addEventListener("click", function () {
+        playSound("tap");
         var view = button.getAttribute("data-view");
         learner.hidden = view !== "learner";
         parent.hidden = view !== "parent";
@@ -1956,6 +2131,7 @@ svg {
 
     Array.prototype.forEach.call(root.querySelectorAll("[data-energy]"), function (button) {
       button.addEventListener("click", function () {
+        playSound("tap");
         state.energy = button.getAttribute("data-energy");
         Array.prototype.forEach.call(root.querySelectorAll("[data-energy]"), function (peer) {
           var active = peer === button;
@@ -1974,8 +2150,15 @@ svg {
 
     root.querySelector("#al-back").addEventListener("click", resetToChooser);
 
+    root.querySelector("#al-sound-toggle").addEventListener("click", function () {
+      state.soundEnabled = !state.soundEnabled;
+      updateSoundControl();
+      saveState();
+      if (state.soundEnabled) playSound("on");
+    });
+
     root.querySelector("#al-feature-play").addEventListener("click", function () {
-      openMission(missionSets.medium[1]);
+      openMission(featuredMission);
     });
 
     root.querySelector("#al-resume").addEventListener("click", function () {
@@ -1983,16 +2166,19 @@ svg {
     });
 
     root.querySelector("#al-feature-info").addEventListener("click", function () {
-      root.querySelector("#al-feature-note").textContent = "Picked because Aria likes horses, the answer can be one tap, and the science task has a clear seven-minute ending.";
+      playSound("tap");
+      root.querySelector("#al-feature-note").textContent = featuredEpisode.why;
     });
 
     root.querySelector("#al-rest-button").addEventListener("click", function () {
+      playSound("rest");
       root.querySelector("#al-energy-note").textContent = "Rest chosen. Nothing has been lost. The drops will still be here tomorrow.";
       saveState();
     });
 
     Array.prototype.forEach.call(root.querySelectorAll("[data-reward]"), function (button) {
       button.addEventListener("click", function () {
+        playSound("tap");
         var reward = button.getAttribute("data-reward");
         var messages = {
           fact: "Horse fact: horses have a very wide field of view, with small blind spots directly in front and behind.",
@@ -2033,6 +2219,7 @@ svg {
       state.ceilingEnabled = true;
       state.noLostStreaks = true;
       state.firstWin = true;
+      state.soundEnabled = false;
       state.selected = null;
       state.completedThisRun = false;
       Array.prototype.forEach.call(root.querySelectorAll("[data-energy]"), function (button) {
@@ -2043,11 +2230,15 @@ svg {
       root.querySelector("#al-energy-note").textContent = "Three fresh choices. One is enough.";
       root.querySelector("#al-feature-note").textContent = "";
       updateProgress();
+      updateSoundControl();
+      renderFeaturedEpisode();
       saveState();
       resetToChooser();
     });
 
     updateProgress();
+    updateSoundControl();
+    renderFeaturedEpisode();
     renderMissions();
     refreshIcons();
   }());
