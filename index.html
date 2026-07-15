@@ -88,15 +88,15 @@
   background-color: var(--background) !important;
 }
 
-/* Generic mobile code-block hosts provide light/dark mode but no series palette.
+/* Generic mobile code-block hosts provide light/dark mode but no accent palette.
    AppBlock hosts set all six variables themselves. */
 :root:not([data-app-block-surface]) {
-  --viz-series-1: var(--primary);
-  --viz-series-2: light-dark(#f3883b, #f59a56);
-  --viz-series-3: light-dark(#5dc977, #74d58b);
-  --viz-series-4: light-dark(#eb77b1, #f08fc0);
-  --viz-series-5: light-dark(#9b79ec, #aa91ef);
-  --viz-series-6: light-dark(#3ab9b1, #5acbc2);
+  --viz-accent-1: var(--primary);
+  --viz-accent-2: light-dark(#f3883b, #f59a56);
+  --viz-accent-3: light-dark(#5dc977, #74d58b);
+  --viz-accent-4: light-dark(#eb77b1, #f08fc0);
+  --viz-accent-5: light-dark(#9b79ec, #aa91ef);
+  --viz-accent-6: light-dark(#3ab9b1, #5acbc2);
 }
 
 :root[data-theme="light"] {
@@ -696,21 +696,21 @@ svg {
 <body>
 <style>
   #aria-launchpad {
-    --al-glow: var(--viz-series-1);
-    --al-glow-2: var(--viz-series-4);
+    --al-glow: var(--viz-accent-1);
+    --al-glow-2: var(--viz-accent-4);
     color: var(--foreground);
     display: grid;
     gap: 1rem;
   }
 
   #aria-launchpad[data-style="cherry"] {
-    --al-glow: var(--viz-series-2);
-    --al-glow-2: var(--viz-series-5);
+    --al-glow: var(--viz-accent-2);
+    --al-glow-2: var(--viz-accent-5);
   }
 
   #aria-launchpad[data-style="sage"] {
-    --al-glow: var(--viz-series-3);
-    --al-glow-2: var(--viz-series-6);
+    --al-glow: var(--viz-accent-3);
+    --al-glow-2: var(--viz-accent-6);
   }
 
   #aria-launchpad .al-top,
@@ -919,8 +919,8 @@ svg {
   #aria-launchpad .al-bitesize-card {
     align-items: center;
     background:
-      linear-gradient(120deg, color-mix(in srgb, var(--viz-series-5) 16%, var(--card)), var(--card));
-    border: 1px solid color-mix(in srgb, var(--viz-series-5) 34%, var(--border));
+      linear-gradient(120deg, color-mix(in srgb, var(--viz-accent-5) 16%, var(--card)), var(--card));
+    border: 1px solid color-mix(in srgb, var(--viz-accent-5) 34%, var(--border));
     border-radius: 0.8rem;
     display: grid;
     gap: 0.8rem;
@@ -936,7 +936,7 @@ svg {
 
   #aria-launchpad .al-bitesize-kicker {
     align-items: center;
-    color: var(--viz-series-5);
+    color: var(--viz-accent-5);
     display: flex;
     gap: 0.35rem;
   }
@@ -1034,8 +1034,8 @@ svg {
 
   #aria-launchpad .al-break-card,
   #aria-launchpad .al-session-ended {
-    background: color-mix(in srgb, var(--viz-series-3) 13%, var(--card));
-    border: 1px solid color-mix(in srgb, var(--viz-series-3) 34%, var(--border));
+    background: color-mix(in srgb, var(--viz-accent-3) 13%, var(--card));
+    border: 1px solid color-mix(in srgb, var(--viz-accent-3) 34%, var(--border));
     border-radius: 0.9rem;
     padding: 1rem;
   }
@@ -1060,6 +1060,333 @@ svg {
 
   #aria-launchpad[data-calm="true"] .al-meter-fill,
   #aria-launchpad[data-calm="true"] .al-burst {
+    animation: none;
+    transition: none;
+  }
+
+  /* Aria's original quest-world visual identity. */
+  #aria-launchpad {
+    --background: #0d0820;
+    --foreground: #fff6e8;
+    --card: rgb(33 22 68 / 82%);
+    --card-foreground: #fff6e8;
+    --popover: #211644;
+    --popover-foreground: #fff6e8;
+    --primary: #ff7a8a;
+    --primary-foreground: #180b25;
+    --secondary: rgb(255 255 255 / 10%);
+    --secondary-foreground: #fff6e8;
+    --muted: rgb(255 255 255 / 10%);
+    --muted-foreground: #c7bddb;
+    --accent: rgb(167 139 250 / 18%);
+    --accent-foreground: #d9caff;
+    --border: rgb(255 246 232 / 17%);
+    --ring: #5eead4;
+    --al-glow: #a78bfa;
+    --al-glow-2: #5eead4;
+    background:
+      radial-gradient(circle at 76% 7%, rgb(167 139 250 / 26%), transparent 28rem),
+      radial-gradient(circle at 8% 32%, rgb(94 234 212 / 13%), transparent 24rem),
+      linear-gradient(150deg, #090516, #171128 54%, #211644);
+    border: 1px solid rgb(255 246 232 / 13%);
+    border-radius: 1.4rem;
+    box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 35%);
+    color: var(--foreground);
+    overflow: hidden;
+    padding: 1rem;
+  }
+
+  #aria-launchpad h2,
+  #aria-launchpad .al-brand-copy strong,
+  #aria-launchpad .al-feature h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    letter-spacing: -0.02em;
+  }
+
+  #aria-launchpad .al-top {
+    background: rgb(13 8 32 / 72%);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 0.75rem;
+  }
+
+  #aria-launchpad .al-brand-lockup {
+    align-items: center;
+    display: flex;
+    gap: 0.7rem;
+    min-width: 0;
+  }
+
+  #aria-launchpad .al-brand-star {
+    align-items: center;
+    background: radial-gradient(circle, #f6c85f, #ff7a8a 54%, transparent 57%);
+    border: 1px solid rgb(246 200 95 / 65%);
+    border-radius: 999px;
+    color: #fff6e8;
+    display: inline-flex;
+    height: 2.5rem;
+    justify-content: center;
+    box-shadow: 0 0 1.2rem rgb(246 200 95 / 38%);
+    width: 2.5rem;
+  }
+
+  #aria-launchpad .al-brand-copy {
+    display: grid;
+    line-height: 1;
+  }
+
+  #aria-launchpad .al-brand-copy small {
+    font-size: 0.64rem;
+    letter-spacing: 0.32em;
+  }
+
+  #aria-launchpad .al-brand-copy strong {
+    font-size: 1.35rem;
+    letter-spacing: 0.08em;
+  }
+
+  #aria-launchpad .al-local-note {
+    border-left: 1px solid var(--border);
+    margin-left: 0.35rem;
+    padding-left: 0.75rem;
+  }
+
+  #aria-launchpad .al-stream {
+    background:
+      radial-gradient(circle at 80% 13%, rgb(255 122 138 / 23%), transparent 26rem),
+      radial-gradient(circle at 16% 40%, rgb(94 234 212 / 13%), transparent 23rem),
+      linear-gradient(180deg, rgb(37 25 74 / 96%), rgb(13 8 32 / 97%));
+    border-color: rgb(167 139 250 / 28%);
+    box-shadow: inset 0 1px rgb(255 255 255 / 8%);
+    padding: 1.1rem;
+  }
+
+  #aria-launchpad .al-stream-nav {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.75rem;
+  }
+
+  #aria-launchpad .al-feature {
+    background:
+      linear-gradient(90deg, rgb(13 8 32 / 94%), rgb(13 8 32 / 42%)),
+      radial-gradient(circle at 82% 42%, rgb(246 200 95 / 29%), transparent 26%),
+      linear-gradient(145deg, rgb(167 139 250 / 25%), rgb(255 122 138 / 12%));
+    border-color: rgb(246 200 95 / 43%);
+    box-shadow: 0 1.2rem 3.4rem rgb(0 0 0 / 28%), inset 0 1px rgb(255 246 232 / 11%);
+    min-height: 19rem;
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+
+  #aria-launchpad .al-feature h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 0.98;
+    margin-bottom: 0.65rem;
+    max-width: 10ch;
+  }
+
+  #aria-launchpad .al-feature-art {
+    background: radial-gradient(circle, rgb(246 200 95 / 24%), rgb(167 139 250 / 12%) 44%, transparent 70%);
+    border-color: rgb(246 200 95 / 29%);
+    min-height: 15rem;
+  }
+
+  #aria-launchpad .al-energy {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  #aria-launchpad .al-checkin {
+    background: linear-gradient(135deg, rgb(167 139 250 / 28%), rgb(33 22 68 / 88%));
+    border-color: rgb(167 139 250 / 37%);
+    box-shadow: inset 0 1px rgb(255 255 255 / 9%);
+  }
+
+  #aria-launchpad .al-checkin:nth-child(2) {
+    background: linear-gradient(135deg, rgb(246 200 95 / 25%), rgb(33 22 68 / 88%));
+    border-color: rgb(246 200 95 / 40%);
+  }
+
+  #aria-launchpad .al-checkin:nth-child(3) {
+    background: linear-gradient(135deg, rgb(94 234 212 / 24%), rgb(33 22 68 / 88%));
+    border-color: rgb(94 234 212 / 36%);
+  }
+
+  #aria-launchpad .al-catalog {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  }
+
+  #aria-launchpad .al-poster {
+    background:
+      radial-gradient(circle at 76% 12%, color-mix(in srgb, var(--al-poster-tone) 31%, transparent), transparent 42%),
+      linear-gradient(155deg, color-mix(in srgb, var(--al-poster-tone) 16%, #211644), #160e31);
+    border-color: color-mix(in srgb, var(--al-poster-tone) 48%, var(--border));
+    box-shadow: 0 0.8rem 1.8rem rgb(0 0 0 / 24%), inset 0 1px rgb(255 255 255 / 8%);
+    min-height: 18rem;
+    padding: 0.8rem;
+    transition: transform 180ms ease, border-color 180ms ease;
+  }
+
+  #aria-launchpad .al-poster:hover {
+    border-color: var(--al-poster-tone);
+    transform: translateY(-3px);
+  }
+
+  #aria-launchpad .al-poster-art {
+    aspect-ratio: 4 / 3;
+    background:
+      radial-gradient(circle at 72% 28%, color-mix(in srgb, var(--al-poster-tone) 58%, transparent), transparent 34%),
+      linear-gradient(0deg, rgb(13 8 32 / 72%), transparent),
+      #211644;
+  }
+
+  #aria-launchpad .al-quiet-zone {
+    background:
+      radial-gradient(circle at 86% 14%, rgb(255 122 138 / 20%), transparent 22rem),
+      linear-gradient(145deg, rgb(38 27 76 / 94%), rgb(13 8 32 / 96%));
+    border: 1px solid rgb(246 200 95 / 28%);
+    border-radius: 1rem;
+    overflow: hidden;
+    padding: 1rem;
+  }
+
+  #aria-launchpad .al-quiet-hero {
+    align-items: center;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 1.2fr) minmax(12rem, 0.8fr);
+  }
+
+  #aria-launchpad .al-quiet-hero h2 {
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    margin-bottom: 0.35rem;
+  }
+
+  #aria-launchpad .al-quiet-horse {
+    color: #f6c85f;
+    filter: drop-shadow(0 0 1.2rem rgb(246 200 95 / 24%));
+  }
+
+  #aria-launchpad .al-quiet-horse svg {
+    display: block;
+    max-height: 13rem;
+    width: 100%;
+  }
+
+  #aria-launchpad .al-quiet-grid {
+    display: grid;
+    gap: 0.7rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  #aria-launchpad .al-quiet-card {
+    background: linear-gradient(150deg, color-mix(in srgb, var(--quiet-tone) 18%, #211644), #160e31);
+    border: 1px solid color-mix(in srgb, var(--quiet-tone) 42%, var(--border));
+    border-radius: 0.9rem;
+    display: grid;
+    gap: 0.7rem;
+    min-height: 13rem;
+    padding: 0.8rem;
+  }
+
+  #aria-launchpad .al-quiet-card p {
+    margin: 0.25rem 0 0;
+  }
+
+  #aria-launchpad .al-quiet-card .btn {
+    align-self: end;
+  }
+
+  #aria-launchpad .al-quiet-icon {
+    align-items: center;
+    background: color-mix(in srgb, var(--quiet-tone) 20%, transparent);
+    border: 1px solid color-mix(in srgb, var(--quiet-tone) 40%, transparent);
+    border-radius: 0.8rem;
+    display: flex;
+    font-size: 2rem;
+    justify-content: center;
+    min-height: 4.8rem;
+  }
+
+  #aria-launchpad .al-quiet-player {
+    background: rgb(13 8 32 / 72%);
+    border: 1px solid rgb(94 234 212 / 28%);
+    border-radius: 0.9rem;
+    padding: 1rem;
+  }
+
+  #aria-launchpad .al-quiet-stage {
+    align-items: center;
+    background:
+      radial-gradient(circle at 60% 28%, rgb(246 200 95 / 20%), transparent 32%),
+      linear-gradient(180deg, #2b1c58, #171128);
+    border: 1px solid var(--border);
+    border-radius: 0.9rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, 0.55fr);
+    min-height: 15rem;
+    overflow: hidden;
+    padding: 1rem;
+  }
+
+  #aria-launchpad .al-quiet-animation {
+    animation: al-quiet-breathe 4s ease-in-out infinite;
+    color: #5eead4;
+    display: grid;
+    min-height: 12rem;
+    place-items: center;
+  }
+
+  #aria-launchpad .al-quiet-animation svg {
+    max-height: 12rem;
+    width: 100%;
+  }
+
+  #aria-launchpad .al-quiet-caption {
+    background: rgb(13 8 32 / 72%);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    display: grid;
+    gap: 0.45rem;
+    padding: 1rem;
+  }
+
+  #aria-launchpad .al-quiet-caption strong {
+    font-size: 1.25rem;
+  }
+
+  #aria-launchpad .al-quiet-progress {
+    background: var(--muted);
+    border-radius: 999px;
+    height: 0.45rem;
+    overflow: hidden;
+  }
+
+  #aria-launchpad .al-quiet-progress span {
+    background: linear-gradient(90deg, #5eead4, #a78bfa, #f6c85f);
+    display: block;
+    height: 100%;
+    transition: width 360ms ease;
+    width: 25%;
+  }
+
+  @keyframes al-quiet-breathe {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-4px) scale(1.015); }
+  }
+
+  #aria-launchpad[data-calm="true"] {
+    background: linear-gradient(160deg, #171128, #211644);
+  }
+
+  #aria-launchpad[data-calm="true"] .al-stream,
+  #aria-launchpad[data-calm="true"] .al-feature,
+  #aria-launchpad[data-calm="true"] .al-quiet-zone {
+    background: #211644;
+    box-shadow: none;
+  }
+
+  #aria-launchpad[data-calm="true"] .al-quiet-animation,
+  #aria-launchpad[data-calm="true"] .al-poster {
     animation: none;
     transition: none;
   }
@@ -1111,7 +1438,7 @@ svg {
   }
 
   #aria-launchpad .al-guardrail {
-    background: color-mix(in srgb, var(--viz-series-2) 12%, transparent);
+    background: color-mix(in srgb, var(--viz-accent-2) 12%, transparent);
     border-radius: 0.75rem;
     padding: 0.7rem 0.85rem;
   }
@@ -1163,6 +1490,34 @@ svg {
     #aria-launchpad .al-route {
       grid-template-columns: 1fr;
     }
+
+    #aria-launchpad {
+      border-radius: 0.8rem;
+      padding: 0.55rem;
+    }
+
+    #aria-launchpad .al-local-note {
+      display: none;
+    }
+
+    #aria-launchpad .al-feature h2 {
+      font-size: 2.35rem;
+    }
+
+    #aria-launchpad .al-quiet-hero,
+    #aria-launchpad .al-quiet-stage {
+      grid-template-columns: 1fr;
+    }
+
+    #aria-launchpad .al-quiet-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 390px) {
+    #aria-launchpad .al-quiet-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1173,18 +1528,22 @@ svg {
     #aria-launchpad .al-burst.is-celebrating {
       animation: none;
     }
+
+    #aria-launchpad .al-quiet-animation {
+      animation: none;
+    }
   }
 </style>
 
 <div id="aria-launchpad" data-style="midnight">
   <div class="al-top">
-    <div class="viz-row">
-      <span class="al-avatar" aria-hidden="true">A</span>
-      <span class="viz-badge al-kicker">ARIA / SIDEQUEST</span>
-      <span class="text-muted">Progress stays on this device</span>
+    <div class="al-brand-lockup" aria-label="Aria's Sidequest">
+      <span class="al-brand-star" aria-hidden="true">✦</span>
+      <span class="al-brand-copy"><small>ARIA'S</small><strong>SIDEQUEST</strong></span>
+      <span class="text-muted al-local-note">Progress stays on this device</span>
     </div>
     <div class="viz-controls" aria-label="Choose view">
-      <button class="btn" type="button" id="al-sound-toggle" aria-pressed="false" data-tooltip="Gentle sounds only after a tap; never autoplay">
+      <button class="btn" type="button" id="al-sound-toggle" aria-pressed="false" data-tooltip="Gentle sounds only after a tap; never starts by itself">
         <i data-lucide="volume-x" id="al-sound-icon" aria-hidden="true"></i>
         <span id="al-sound-label">Sound off</span>
       </button>
@@ -1194,7 +1553,7 @@ svg {
       </button>
       <button class="btn btn-primary" type="button" data-view="learner" aria-pressed="true">
         <i data-lucide="sparkles" aria-hidden="true"></i>
-        Aria view
+        My world
       </button>
       <button class="btn" type="button" data-view="parent" aria-pressed="false">
         <i data-lucide="shield-check" aria-hidden="true"></i>
@@ -1220,9 +1579,10 @@ svg {
       <div class="al-stream">
         <div class="al-stream-nav">
           <div class="viz-row">
-            <span class="viz-badge al-kicker">SIDEQUEST PLAY</span>
+            <span class="viz-badge al-kicker">CHOOSE YOUR QUEST</span>
             <span class="text-muted">Home</span>
-            <span class="text-muted">My list</span>
+            <span class="text-muted">My trail</span>
+            <button class="btn btn-ghost" type="button" id="al-quiet-jump">Quiet Paddock</button>
           </div>
           <div class="viz-row">
             <span class="text-muted"><i data-lucide="headphones" aria-hidden="true"></i> Sound optional</span>
@@ -1232,21 +1592,21 @@ svg {
 
         <div class="al-feature">
           <div class="al-stack">
-            <div class="text-small text-muted al-kicker" id="al-feature-kicker">FEATURED FOR ARIA · CHANGES DAILY</div>
+            <div class="text-small text-muted al-kicker" id="al-feature-kicker">TODAY'S SPARK · CHANGES DAILY</div>
             <div>
               <h2 id="al-feature-title">The Jump Equation</h2>
               <p id="al-feature-copy">A horse clears the fence. Where did the energy go? Solve one fast mystery using something you already know.</p>
             </div>
             <div class="viz-row">
-              <span class="viz-badge al-match" id="al-feature-match">98% match</span>
+              <span class="viz-badge" id="al-feature-match">Chosen for today</span>
               <span class="text-muted" id="al-feature-subject">Science</span>
               <span class="text-muted" id="al-feature-time">7 min</span>
               <span class="text-muted">One-tap answers</span>
             </div>
             <div class="viz-row">
               <button class="btn btn-primary" type="button" id="al-feature-play">
-                <i data-lucide="play" aria-hidden="true"></i>
-                Play episode
+                <i data-lucide="sparkles" aria-hidden="true"></i>
+                Start
               </button>
               <button class="btn" type="button" id="al-feature-info">
                 <i data-lucide="info" aria-hidden="true"></i>
@@ -1269,7 +1629,7 @@ svg {
 
         <div>
           <div class="al-finish">
-            <h2>Continue watching</h2>
+            <h2>Pick up my trail</h2>
             <span class="text-muted">2 minutes left</span>
           </div>
           <div class="al-continue">
@@ -1287,13 +1647,13 @@ svg {
                 <strong>Stable Ratios</strong>
                 <div class="text-muted">Maths · Feed mix quick win</div>
               </div>
-              <div class="al-meter" role="progressbar" aria-label="Stable Ratios episode is 65 percent complete" aria-valuemin="0" aria-valuemax="100" aria-valuenow="65">
+              <div class="al-meter" role="progressbar" aria-label="Stable Ratios activity is 65 percent complete" aria-valuemin="0" aria-valuemax="100" aria-valuenow="65">
                 <div class="al-meter-fill" style="width: 65%"></div>
               </div>
             </div>
             <button class="btn" type="button" id="al-resume">
-              <i data-lucide="play" aria-hidden="true"></i>
-              Resume
+              <i data-lucide="route" aria-hidden="true"></i>
+              Resume trail
             </button>
           </div>
         </div>
@@ -1303,7 +1663,7 @@ svg {
             <h2>What feels possible today?</h2>
             <div class="text-muted">Choose the gentlest option that fits. You can change it anytime.</div>
           </div>
-          <span class="viz-badge">Autoplay off</span>
+          <span class="viz-badge">Nothing starts by itself</span>
         </div>
 
         <div class="al-energy" aria-label="Choose what feels possible today">
@@ -1324,7 +1684,7 @@ svg {
         <div>
           <div class="al-finish">
             <div>
-              <h2>Top picks for Aria</h2>
+              <h2>Choose a place</h2>
               <div class="text-muted" id="al-energy-note">One picture, one tap, then done.</div>
             </div>
             <span class="viz-badge">One-tap answers</span>
@@ -1334,11 +1694,86 @@ svg {
 
         <div>
           <div class="al-finish">
-            <h2>Quick wins</h2>
-            <span class="text-muted">Short episodes selected for low effort</span>
+            <h2>Tiny wins</h2>
+            <span class="text-muted">Small activities with a clear finish</span>
           </div>
           <div class="al-catalog" id="al-quick-missions" aria-label="Quick learning wins"></div>
         </div>
+
+        <section class="al-quiet-zone al-stack" id="al-quiet-zone" aria-labelledby="al-quiet-title">
+          <div class="al-quiet-hero">
+            <div class="al-stack">
+              <div class="text-small al-kicker">THE QUIET PADDOCK</div>
+              <div>
+                <h2 id="al-quiet-title">Rest with horses</h2>
+                <p>Silent little horse-care clips for breathing space. No questions, XP or next task.</p>
+              </div>
+              <div class="viz-row">
+                <span class="viz-badge">20–30 seconds</span>
+                <span class="viz-badge">Soundless</span>
+                <span class="viz-badge">Stops by itself</span>
+              </div>
+            </div>
+            <div class="al-quiet-horse" aria-hidden="true">
+              <svg viewBox="0 0 260 150">
+                <defs><linearGradient id="al-sunset" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ff7a8a"/><stop offset="1" stop-color="#f6c85f"/></linearGradient></defs>
+                <circle cx="196" cy="42" r="25" fill="url(#al-sunset)" opacity=".9"/>
+                <path d="M12 122 Q64 92 114 116 T248 111 V150 H12Z" fill="currentColor" opacity=".16"/>
+                <path d="M72 104 Q84 73 119 76 L153 79 Q170 81 178 96 L171 112 L158 109 L150 93 L116 96 L105 119 H92 L96 96 L82 116 H68Z" fill="currentColor"/>
+                <path d="M151 79 Q158 56 180 55 L197 66 L188 81 L171 83Z" fill="currentColor"/>
+                <path d="M179 55 L174 42 L184 51 L192 39 L192 56" fill="currentColor"/>
+                <path d="M78 84 Q52 65 47 82 Q58 78 73 96" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="al-quiet-grid" id="al-quiet-library">
+            <article class="al-quiet-card" style="--quiet-tone:#5eead4">
+              <div class="al-quiet-icon" aria-hidden="true">🪮</div>
+              <div><strong>The grooming reset</strong><p class="text-muted">Curry · flick · smooth</p></div>
+              <button class="btn" type="button" data-quiet-guide="0">Start 20-sec clip</button>
+            </article>
+            <article class="al-quiet-card" style="--quiet-tone:#a78bfa">
+              <div class="al-quiet-icon" aria-hidden="true">🐴</div>
+              <div><strong>Soft horse signals</strong><p class="text-muted">Notice the whole horse</p></div>
+              <button class="btn" type="button" data-quiet-guide="1">Start 20-sec clip</button>
+            </article>
+            <article class="al-quiet-card" style="--quiet-tone:#f6c85f">
+              <div class="al-quiet-icon" aria-hidden="true">🤝</div>
+              <div><strong>Kind groundwork</strong><p class="text-muted">Space · softness · pause</p></div>
+              <button class="btn" type="button" data-quiet-guide="2">Start 20-sec clip</button>
+            </article>
+            <article class="al-quiet-card" style="--quiet-tone:#ff7a8a">
+              <div class="al-quiet-icon" aria-hidden="true">🌙</div>
+              <div><strong>After-ride exhale</strong><p class="text-muted">Walk · breathe · check</p></div>
+              <button class="btn" type="button" data-quiet-guide="3">Start 20-sec clip</button>
+            </article>
+          </div>
+
+          <div class="al-quiet-player al-stack" id="al-quiet-player" hidden>
+            <div class="al-finish">
+              <div>
+                <div class="text-small al-kicker">QUIET CLIP</div>
+                <h2 id="al-quiet-player-title">The grooming reset</h2>
+              </div>
+              <span class="viz-badge">No score</span>
+            </div>
+            <div class="al-quiet-stage">
+              <div class="al-quiet-animation" id="al-quiet-animation" aria-hidden="true"></div>
+              <div class="al-quiet-caption">
+                <strong id="al-quiet-frame-title">Begin gently</strong>
+                <span id="al-quiet-frame-copy">Start where the horse is comfortable.</span>
+              </div>
+            </div>
+            <div class="al-quiet-progress" aria-hidden="true"><span id="al-quiet-progress-fill"></span></div>
+            <div class="al-mission-actions">
+              <button class="btn" type="button" id="al-quiet-pause"><i data-lucide="pause" aria-hidden="true"></i> Pause</button>
+              <button class="btn" type="button" id="al-quiet-next">Next picture</button>
+              <button class="btn btn-primary" type="button" id="al-quiet-close">Back to the paddock</button>
+            </div>
+            <p class="text-small text-muted">These are calming visual ideas, not instructions to try alone. Hands-on horse care and training always needs the responsible adult at the yard.</p>
+          </div>
+        </section>
       </div>
 
       <div class="al-guardrail">
@@ -1351,7 +1786,7 @@ svg {
       <div class="al-finish al-mission-toolbar">
         <button class="btn btn-ghost" type="button" id="al-back">
           <i data-lucide="arrow-left" aria-hidden="true"></i>
-          Swap episode
+          Swap activity
         </button>
         <div class="viz-row">
           <button class="btn btn-ghost" type="button" id="al-break-button">
@@ -1447,11 +1882,11 @@ svg {
         <div class="al-finish">
           <div>
             <div class="text-small text-muted">WIN BANKED</div>
-            <h2><span class="al-burst" id="al-burst">✨</span> <span id="al-reward-title">Episode complete.</span></h2>
+            <h2><span class="al-burst" id="al-burst">✨</span> <span id="al-reward-title">Win banked.</span></h2>
           </div>
           <span class="viz-badge" id="al-earned">+15 XP · Rosette 4</span>
         </div>
-        <p id="al-reward-copy">You spotted the pattern and finished before it became a drag. No next episode will start automatically.</p>
+        <p id="al-reward-copy">You spotted the pattern and finished before it became a drag. Nothing else will start.</p>
       </div>
 
       <div class="al-stack" id="al-reward-options">
@@ -1528,6 +1963,10 @@ svg {
         <div class="al-finish"><span>English</span><span class="text-muted">1 voice response</span></div>
         <div class="al-meter" role="img" aria-label="English has one voice response"><div class="al-meter-fill" style="width: 42%"></div></div>
       </div>
+    </div>
+
+    <div class="al-guardrail">
+      <span><i data-lucide="heart" aria-hidden="true"></i> Quiet Paddock time is recreation. It never adds learning minutes, XP or streaks.</span>
     </div>
 
     <div class="al-ceiling al-stack">
@@ -1890,7 +2329,7 @@ svg {
 
     missionSets.high = missionSets.high.concat([
       {
-        subject: "MATHS · ALGEBRA EPISODE",
+        subject: "MATHS · ALGEBRA QUEST",
         title: "Find the unknown",
         time: "9 min",
         xp: 25,
@@ -1981,7 +2420,50 @@ svg {
       }
     ]);
 
-    var featureEpisodes = [
+    var quietGuides = [
+      {
+        title: "The grooming reset",
+        kind: "groom",
+        frames: [
+          { title: "Start softly", copy: "Pause and notice where the horse seems comfortable." },
+          { title: "Curry in circles", copy: "A rubber curry comb can loosen dried mud on fleshy areas." },
+          { title: "Flick dust away", copy: "A dandy brush uses short flicks in the direction of the coat." },
+          { title: "Finish smoothly", copy: "A softer body brush can leave the coat neat and settled." }
+        ]
+      },
+      {
+        title: "Soft horse signals",
+        kind: "signals",
+        frames: [
+          { title: "See the whole horse", copy: "One ear or one tail swish never tells the whole story." },
+          { title: "Look for softness", copy: "A soft eye and looser muscles may be part of a settled picture." },
+          { title: "Notice changes", copy: "A sudden change can matter more than one fixed expression." },
+          { title: "Give space", copy: "If anything feels uncertain, pause and ask the responsible adult." }
+        ]
+      },
+      {
+        title: "Kind groundwork",
+        kind: "ground",
+        frames: [
+          { title: "Make room", copy: "Calm handling begins with enough space for horse and person." },
+          { title: "Keep the rope free", copy: "A lead rope should never be wrapped around a hand." },
+          { title: "Use a soft pause", copy: "Stopping and breathing can be useful information, not failure." },
+          { title: "Adult alongside", copy: "Groundwork belongs with the responsible adult at the yard." }
+        ]
+      },
+      {
+        title: "After-ride exhale",
+        kind: "cooldown",
+        frames: [
+          { title: "Let the pace soften", copy: "A quiet walk can help the whole moment feel less rushed." },
+          { title: "Breathe together", copy: "Notice your own shoulders and let them drop." },
+          { title: "Check the horse", copy: "The responsible adult checks comfort, tack areas and recovery." },
+          { title: "End on calm", copy: "There is no next challenge. This clip simply ends here." }
+        ]
+      }
+    ];
+
+    var featureSparks = [
       {
         title: "The Jump Equation",
         missionTitle: "Energy at the jump",
@@ -1996,7 +2478,7 @@ svg {
         title: "The Stable Code",
         missionTitle: "Feed mix quick win",
         subject: "Maths",
-        copy: "Crack Paddy's feed ratio like a secret recipe. One pattern, one answer, then the episode ends.",
+        copy: "Crack Paddy's feed ratio like a secret recipe. One pattern, one answer, then the quest ends.",
         match: 97,
         artLabel: "Ratio · Feed · Pattern",
         why: "A familiar stable problem turns ratio work into a short, high-confidence puzzle with no writing required.",
@@ -2090,8 +2572,8 @@ svg {
       return watchable[localDaySeed() % watchable.length];
     }
 
-    var featuredEpisode = featureEpisodes[localDaySeed() % featureEpisodes.length];
-    var featuredMission = findMission(featuredEpisode.missionTitle);
+    var featuredSpark = featureSparks[localDaySeed() % featureSparks.length];
+    var featuredMission = findMission(featuredSpark.missionTitle);
     var storageKey = "aria-sidequest-production-v1";
     var todayKey = localDateKey();
     var savedState = {};
@@ -2130,6 +2612,11 @@ svg {
     var quickMissionsHost = root.querySelector("#al-quick-missions");
     var feedback = root.querySelector("#al-feedback");
     var audioContext = null;
+    var quietTimer = null;
+    var quietGuideIndex = 0;
+    var quietFrameIndex = 0;
+    var quietPaused = false;
+    var quietAtEnd = false;
 
     function refreshIcons() {
       if (window.lucide && typeof window.lucide.createIcons === "function") {
@@ -2303,18 +2790,120 @@ svg {
         '</svg>';
     }
 
-    function renderFeaturedEpisode() {
-      root.setAttribute("data-style", featuredEpisode.style);
-      root.querySelector("#al-feature-kicker").textContent = "FEATURED FOR ARIA · EPISODE " +
-        (featureEpisodes.indexOf(featuredEpisode) + 1) + " OF " + featureEpisodes.length + " · CHANGES DAILY";
-      root.querySelector("#al-feature-title").textContent = featuredEpisode.title;
-      root.querySelector("#al-feature-copy").textContent = featuredEpisode.copy;
-      root.querySelector("#al-feature-match").textContent = featuredEpisode.match + "% match";
-      root.querySelector("#al-feature-subject").textContent = featuredEpisode.subject;
+    function quietVisual(kind, step) {
+      var extra = "";
+      var tone = kind === "groom" ? "#5eead4" : kind === "signals" ? "#a78bfa" : kind === "ground" ? "#f6c85f" : "#ff7a8a";
+      if (kind === "groom") {
+        var brushX = 92 + (step * 19);
+        extra = '<rect x="' + brushX + '" y="48" width="38" height="18" rx="8" fill="' + tone + '" transform="rotate(-12 ' + brushX + ' 48)"/>' +
+          '<path d="M' + (brushX + 5) + ' 69 q18 16 36 0" fill="none" stroke="' + tone + '" stroke-width="5" stroke-linecap="round" opacity=".7"/>';
+      } else if (kind === "signals") {
+        extra = '<circle cx="194" cy="62" r="5" fill="' + tone + '"/>' +
+          '<path d="M177 39 L168 ' + (22 + step * 3) + ' M193 39 L204 ' + (22 + (3 - step) * 3) + '" stroke="' + tone + '" stroke-width="7" stroke-linecap="round"/>' +
+          '<path d="M203 77 q12 8 22 1" fill="none" stroke="' + tone + '" stroke-width="4" stroke-linecap="round"/>';
+      } else if (kind === "ground") {
+        extra = '<circle cx="45" cy="52" r="12" fill="' + tone + '"/>' +
+          '<path d="M45 65 V111 M45 78 L68 93 M45 78 L27 91 M45 111 L30 139 M45 111 L62 139" stroke="' + tone + '" stroke-width="7" stroke-linecap="round"/>' +
+          '<path d="M68 93 Q96 ' + (76 + step * 5) + ' 126 81" fill="none" stroke="' + tone + '" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 6"/>';
+      } else {
+        extra = '<path d="M35 123 Q75 ' + (113 - step * 4) + ' 111 123 T245 121" fill="none" stroke="' + tone + '" stroke-width="5" stroke-linecap="round" opacity=".72"/>' +
+          '<path d="M57 31 q10 -12 20 0 M83 25 q10 -12 20 0 M109 31 q10 -12 20 0" fill="none" stroke="' + tone + '" stroke-width="4" stroke-linecap="round" opacity=".55"/>';
+      }
+      return '<svg viewBox="0 0 280 160" role="img" aria-label="Calm illustrated horse-care moment">' +
+        '<circle cx="227" cy="36" r="23" fill="' + tone + '" opacity=".18"/>' +
+        '<path d="M72 113 Q83 73 124 72 L164 76 Q181 79 190 96 L182 117 H166 L157 94 H119 L105 133 H90 L95 97 L78 126 H62Z" fill="currentColor" opacity=".88"/>' +
+        '<path d="M161 77 Q169 48 196 48 L218 63 L207 83 L185 84Z" fill="currentColor"/>' +
+        '<path d="M188 49 L181 31 L195 43 L207 29 L207 51" fill="currentColor"/>' +
+        '<path d="M79 83 Q49 61 41 82 Q56 78 72 102" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>' +
+        extra +
+        '<g transform="translate(177 143)">' + [0, 1, 2, 3].map(function (dot) {
+          return '<circle cx="' + (dot * 18) + '" cy="0" r="4" fill="' + (dot <= step ? tone : "#6d6286") + '"/>';
+        }).join("") + '</g></svg>';
+    }
+
+    function clearQuietTimer() {
+      if (quietTimer) window.clearTimeout(quietTimer);
+      quietTimer = null;
+    }
+
+    function updateQuietPauseButton() {
+      var button = root.querySelector("#al-quiet-pause");
+      var label = quietAtEnd ? "Replay" : (quietPaused ? "Continue" : "Pause");
+      var icon = quietAtEnd ? "rotate-ccw" : (quietPaused ? "play" : "pause");
+      button.innerHTML = '<i data-lucide="' + icon + '" aria-hidden="true"></i> ' + label;
+      refreshIcons();
+    }
+
+    function renderQuietFrame() {
+      var guide = quietGuides[quietGuideIndex];
+      var frame = guide.frames[quietFrameIndex];
+      root.querySelector("#al-quiet-player-title").textContent = guide.title;
+      root.querySelector("#al-quiet-frame-title").textContent = frame.title;
+      root.querySelector("#al-quiet-frame-copy").textContent = frame.copy;
+      root.querySelector("#al-quiet-animation").innerHTML = quietVisual(guide.kind, quietFrameIndex);
+      root.querySelector("#al-quiet-progress-fill").style.width = (((quietFrameIndex + 1) / guide.frames.length) * 100) + "%";
+      root.querySelector("#al-quiet-next").textContent = quietFrameIndex === guide.frames.length - 1 ? "Finish clip" : "Next picture";
+      updateQuietPauseButton();
+    }
+
+    function scheduleQuietFrame() {
+      clearQuietTimer();
+      if (quietPaused || quietAtEnd) return;
+      quietTimer = window.setTimeout(function () {
+        advanceQuietFrame();
+      }, 5000);
+    }
+
+    function advanceQuietFrame() {
+      var guide = quietGuides[quietGuideIndex];
+      clearQuietTimer();
+      if (quietFrameIndex >= guide.frames.length - 1) {
+        quietAtEnd = true;
+        quietPaused = true;
+        root.querySelector("#al-quiet-frame-title").textContent = "Rest complete";
+        root.querySelector("#al-quiet-frame-copy").textContent = "Nothing else will begin. Stay here or return to the paddock.";
+        updateQuietPauseButton();
+        return;
+      }
+      quietFrameIndex += 1;
+      renderQuietFrame();
+      scheduleQuietFrame();
+    }
+
+    function openQuietGuide(index) {
+      clearQuietTimer();
+      quietGuideIndex = index;
+      quietFrameIndex = 0;
+      quietPaused = false;
+      quietAtEnd = false;
+      root.querySelector("#al-quiet-library").hidden = true;
+      root.querySelector("#al-quiet-player").hidden = false;
+      renderQuietFrame();
+      scheduleQuietFrame();
+      var player = root.querySelector("#al-quiet-player");
+      if (typeof player.scrollIntoView === "function") player.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function closeQuietGuide(shouldFocus) {
+      clearQuietTimer();
+      quietPaused = false;
+      quietAtEnd = false;
+      root.querySelector("#al-quiet-player").hidden = true;
+      root.querySelector("#al-quiet-library").hidden = false;
+      if (shouldFocus !== false) root.querySelector("#al-quiet-jump").focus();
+    }
+
+    function renderFeaturedSpark() {
+      root.setAttribute("data-style", featuredSpark.style);
+      root.querySelector("#al-feature-kicker").textContent = "TODAY'S SPARK · CHANGES DAILY";
+      root.querySelector("#al-feature-title").textContent = featuredSpark.title;
+      root.querySelector("#al-feature-copy").textContent = featuredSpark.copy;
+      root.querySelector("#al-feature-match").textContent = "Chosen for today";
+      root.querySelector("#al-feature-subject").textContent = featuredSpark.subject;
       root.querySelector("#al-feature-time").textContent = featuredMission.time;
       root.querySelector("#al-feature-art-visual").innerHTML = visualFor(featuredMission);
-      root.querySelector("#al-feature-art-label").textContent = featuredEpisode.artLabel;
-      root.querySelector("#al-feature-art").setAttribute("aria-label", "Abstract cover artwork for " + featuredEpisode.title);
+      root.querySelector("#al-feature-art-label").textContent = featuredSpark.artLabel;
+      root.querySelector("#al-feature-art").setAttribute("aria-label", "Illustrated quest artwork for " + featuredSpark.title);
       root.querySelector("#al-feature-note").textContent = "";
       updateModeLabels();
     }
@@ -2323,7 +2912,7 @@ svg {
       var isWatch = state.energy === "low";
       var featureButton = root.querySelector("#al-feature-play");
       var watchMission = getWatchMission(featuredMission);
-      var label = isWatch ? "Watch a short clip" : "Play episode";
+      var label = isWatch ? "Watch a short clip" : "Start today's spark";
       if (isWatch) {
         root.querySelector("#al-feature-kicker").textContent = "WATCH-ONLY PICK · NO ANSWERS";
         root.querySelector("#al-feature-title").textContent = watchMission.title;
@@ -2333,50 +2922,59 @@ svg {
         root.querySelector("#al-feature-art-visual").innerHTML = visualFor(watchMission);
         root.querySelector("#al-feature-art-label").textContent = "Short · Visual · No test";
       } else {
-        root.querySelector("#al-feature-kicker").textContent = "FEATURED FOR ARIA · EPISODE " +
-          (featureEpisodes.indexOf(featuredEpisode) + 1) + " OF " + featureEpisodes.length + " · CHANGES DAILY";
-        root.querySelector("#al-feature-title").textContent = featuredEpisode.title;
-        root.querySelector("#al-feature-copy").textContent = featuredEpisode.copy;
-        root.querySelector("#al-feature-subject").textContent = featuredEpisode.subject;
+        root.querySelector("#al-feature-kicker").textContent = "TODAY'S SPARK · CHANGES DAILY";
+        root.querySelector("#al-feature-title").textContent = featuredSpark.title;
+        root.querySelector("#al-feature-copy").textContent = featuredSpark.copy;
+        root.querySelector("#al-feature-subject").textContent = featuredSpark.subject;
         root.querySelector("#al-feature-time").textContent = featuredMission.time;
         root.querySelector("#al-feature-art-visual").innerHTML = visualFor(featuredMission);
-        root.querySelector("#al-feature-art-label").textContent = featuredEpisode.artLabel;
+        root.querySelector("#al-feature-art-label").textContent = featuredSpark.artLabel;
       }
-      featureButton.innerHTML = '<i data-lucide="' + (isWatch ? "play-circle" : "play") + '" aria-hidden="true"></i> ' + label;
+      featureButton.innerHTML = '<i data-lucide="' + (isWatch ? "play-circle" : "sparkles") + '" aria-hidden="true"></i> ' + label;
       featureButton.setAttribute(
         "aria-label",
-        (isWatch ? "Watch " + watchMission.title + ", " + watchMission.bitesize.duration : "Play " + featuredEpisode.title + ", " + featuredMission.time)
+        (isWatch ? "Watch " + watchMission.title + ", " + watchMission.bitesize.duration : "Start " + featuredSpark.title + ", " + featuredMission.time)
       );
       refreshIcons();
+    }
+
+    function placeNameFor(item) {
+      if (item.subject.indexOf("MATHS") === 0) return "Maths Meadow";
+      if (item.subject.indexOf("SCIENCE") === 0) return "Science Sparks";
+      if (item.subject.indexOf("ENGLISH") === 0) return "Story Studio";
+      if (item.subject.indexOf("FRENCH") === 0) return "French Café";
+      if (item.subject.indexOf("GEOGRAPHY") === 0 || item.subject.indexOf("HISTORY") === 0) return "World Explorer";
+      if (item.subject.indexOf("COMPUTING") === 0) return "Code Cave";
+      return "Curiosity Corner";
     }
 
     function renderCatalog(host, list, offset) {
       host.innerHTML = "";
       list.forEach(function (item, index) {
         var article = document.createElement("article");
-        var series = ((index + offset) % 6) + 1;
-        var match = Math.max(84, 98 - ((index + offset) * 3));
-        var actionLabel = state.energy === "low" ? "Watch" : "Play";
+        var paletteIndex = ((index + offset) % 6) + 1;
+        var actionLabel = state.energy === "low" ? "Watch" : "Start";
+        var placeName = placeNameFor(item);
         article.className = "al-poster";
-        article.style.setProperty("--al-poster-tone", "var(--viz-series-" + series + ")");
+        article.style.setProperty("--al-poster-tone", "var(--viz-accent-" + paletteIndex + ")");
         article.innerHTML =
           '<div class="al-poster-art">' +
-            '<span class="viz-badge">S' + (index + 1) + ':E' + (offset + 1) + '</span>' +
+            '<span class="viz-badge">' + placeName + '</span>' +
             '<div class="al-poster-visual">' + visualFor(item) + '</div>' +
           '</div>' +
           '<div class="al-poster-copy">' +
             '<span class="text-small text-muted">' + item.subject + '</span>' +
             '<strong>' + item.title + '</strong>' +
-            '<span class="al-mission-meta"><span class="al-match">' + match + '% match</span><span class="text-muted">' + item.time + '</span></span>' +
+            '<span class="al-mission-meta"><span class="text-muted">' + item.time + '</span><span class="text-muted">One clear finish</span></span>' +
           '</div>' +
-          '<button class="btn" type="button"><i data-lucide="' + (state.energy === "low" ? "play-circle" : "play") + '" aria-hidden="true"></i> ' + actionLabel + '</button>';
-        var playButton = article.querySelector("button");
-        playButton.setAttribute(
+          '<button class="btn" type="button"><i data-lucide="' + (state.energy === "low" ? "play-circle" : "sparkles") + '" aria-hidden="true"></i> ' + actionLabel + '</button>';
+        var startButton = article.querySelector("button");
+        startButton.setAttribute(
           "aria-label",
           actionLabel + " " + item.title + ", " + item.time + ", earns " + (state.energy === "low" ? 5 : item.xp) + " XP"
         );
-        playButton.disabled = state.ceilingEnabled && state.dailyMinutes >= state.dailyCap;
-        playButton.addEventListener("click", function () {
+        startButton.disabled = state.ceilingEnabled && state.dailyMinutes >= state.dailyCap;
+        startButton.addEventListener("click", function () {
           openMission(item, state.energy === "low");
         });
         host.appendChild(article);
@@ -2418,6 +3016,7 @@ svg {
         return;
       }
       playSound("open");
+      closeQuietGuide(false);
       state.selected = forceWatchOnly || state.energy === "low" ? getWatchMission(item) : item;
       state.watchOnly = Boolean(forceWatchOnly || state.energy === "low");
       chooser.hidden = true;
@@ -2527,11 +3126,11 @@ svg {
         state.dailyMinutes += earnedMinutes;
         state.completedThisRun = true;
       }
-      root.querySelector("#al-reward-title").textContent = state.watchOnly ? "Showing up counts." : "Episode complete.";
+      root.querySelector("#al-reward-title").textContent = state.watchOnly ? "Showing up counts." : "Win banked.";
       root.querySelector("#al-earned").textContent = "+" + earnedXp + " XP · Rosette " + state.rosettes;
       root.querySelector("#al-reward-copy").textContent = state.watchOnly
         ? "You chose a short refresher and checked in. That is enough for today. Nothing else will start."
-        : state.selected.success + " You finished while it still felt achievable. Autoplay stays off.";
+        : state.selected.success + " You finished while it still felt achievable. Nothing else starts.";
       root.querySelector("#al-reward-message").textContent = "";
       root.querySelector("#al-reward-options").hidden = false;
       root.querySelector("#al-session-ended").hidden = true;
@@ -2561,6 +3160,7 @@ svg {
       button.addEventListener("click", function () {
         playSound("tap");
         var view = button.getAttribute("data-view");
+        if (view === "parent") closeQuietGuide(false);
         learner.hidden = view !== "learner";
         parent.hidden = view !== "parent";
         Array.prototype.forEach.call(root.querySelectorAll("[data-view]"), function (peer) {
@@ -2616,13 +3216,52 @@ svg {
 
     root.querySelector("#al-feature-info").addEventListener("click", function () {
       playSound("tap");
-      root.querySelector("#al-feature-note").textContent = featuredEpisode.why;
+      root.querySelector("#al-feature-note").textContent = featuredSpark.why;
     });
 
     root.querySelector("#al-rest-button").addEventListener("click", function () {
       playSound("rest");
       root.querySelector("#al-energy-note").textContent = "Rest chosen. Nothing has been lost. The drops will still be here tomorrow.";
       saveState();
+    });
+
+    root.querySelector("#al-quiet-jump").addEventListener("click", function () {
+      var zone = root.querySelector("#al-quiet-zone");
+      if (typeof zone.scrollIntoView === "function") zone.scrollIntoView({ behavior: "smooth", block: "start" });
+      root.querySelector('[data-quiet-guide="0"]').focus();
+    });
+
+    Array.prototype.forEach.call(root.querySelectorAll("[data-quiet-guide]"), function (button) {
+      button.addEventListener("click", function () {
+        openQuietGuide(Number(button.getAttribute("data-quiet-guide")));
+      });
+    });
+
+    root.querySelector("#al-quiet-pause").addEventListener("click", function () {
+      if (quietAtEnd) {
+        quietFrameIndex = 0;
+        quietPaused = false;
+        quietAtEnd = false;
+        renderQuietFrame();
+        scheduleQuietFrame();
+        return;
+      }
+      quietPaused = !quietPaused;
+      if (quietPaused) clearQuietTimer();
+      else scheduleQuietFrame();
+      updateQuietPauseButton();
+    });
+
+    root.querySelector("#al-quiet-next").addEventListener("click", function () {
+      if (quietAtEnd) {
+        closeQuietGuide();
+        return;
+      }
+      advanceQuietFrame();
+    });
+
+    root.querySelector("#al-quiet-close").addEventListener("click", function () {
+      closeQuietGuide();
     });
 
     root.querySelector("#al-break-button").addEventListener("click", function () {
@@ -2698,6 +3337,7 @@ svg {
     });
 
     root.querySelector("#al-reset").addEventListener("click", function () {
+      closeQuietGuide(false);
       root.setAttribute("data-style", "midnight");
       state.energy = "medium";
       state.xp = 42;
@@ -2725,7 +3365,7 @@ svg {
       updateProgress();
       updateSoundControl();
       updateCalmControl();
-      renderFeaturedEpisode();
+      renderFeaturedSpark();
       saveState();
       resetToChooser();
     });
@@ -2733,9 +3373,10 @@ svg {
     updateProgress();
     updateSoundControl();
     updateCalmControl();
-    renderFeaturedEpisode();
+    renderFeaturedSpark();
     renderMissions();
     refreshIcons();
+    window.addEventListener("pagehide", clearQuietTimer, { once: true });
   }());
 </script>
 
