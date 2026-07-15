@@ -973,6 +973,97 @@ svg {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  #aria-launchpad .al-checkin {
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 5.8rem;
+    padding: 0.85rem;
+    text-align: left;
+  }
+
+  #aria-launchpad .al-checkin-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  #aria-launchpad .al-checkin-copy {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  #aria-launchpad .al-checkin-copy small {
+    color: var(--muted-foreground);
+    font-weight: var(--font-weight-normal);
+  }
+
+  #aria-launchpad .al-route {
+    display: grid;
+    gap: 0.55rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  #aria-launchpad .al-route-step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    display: grid;
+    gap: 0.25rem;
+    min-height: 5rem;
+    padding: 0.7rem;
+  }
+
+  #aria-launchpad .al-route-step.is-now {
+    background: color-mix(in srgb, var(--al-glow) 12%, var(--card));
+    border-color: color-mix(in srgb, var(--al-glow) 38%, var(--border));
+  }
+
+  #aria-launchpad .al-route-label {
+    color: var(--al-glow);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  #aria-launchpad .al-mission-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  #aria-launchpad .al-break-card,
+  #aria-launchpad .al-session-ended {
+    background: color-mix(in srgb, var(--viz-series-3) 13%, var(--card));
+    border: 1px solid color-mix(in srgb, var(--viz-series-3) 34%, var(--border));
+    border-radius: 0.9rem;
+    padding: 1rem;
+  }
+
+  #aria-launchpad #al-mission.is-paused > *:not(.al-mission-toolbar):not(.al-break-card) {
+    display: none;
+  }
+
+  #aria-launchpad[data-calm="true"] .al-status,
+  #aria-launchpad[data-calm="true"] .al-continue,
+  #aria-launchpad[data-calm="true"] .al-match,
+  #aria-launchpad[data-calm="true"] #al-feature-info,
+  #aria-launchpad[data-calm="true"] #al-feature-art-label {
+    display: none;
+  }
+
+  #aria-launchpad[data-calm="true"] .al-stream,
+  #aria-launchpad[data-calm="true"] .al-feature,
+  #aria-launchpad[data-calm="true"] .al-poster-art {
+    background: var(--card);
+  }
+
+  #aria-launchpad[data-calm="true"] .al-meter-fill,
+  #aria-launchpad[data-calm="true"] .al-burst {
+    animation: none;
+    transition: none;
+  }
+
   #aria-launchpad .al-mission-copy {
     display: grid;
     gap: 0.3rem;
@@ -1068,7 +1159,8 @@ svg {
 
     #aria-launchpad .al-energy,
     #aria-launchpad .al-answers,
-    #aria-launchpad .al-rewards {
+    #aria-launchpad .al-rewards,
+    #aria-launchpad .al-route {
       grid-template-columns: 1fr;
     }
   }
@@ -1095,6 +1187,10 @@ svg {
       <button class="btn" type="button" id="al-sound-toggle" aria-pressed="false" data-tooltip="Gentle sounds only after a tap; never autoplay">
         <i data-lucide="volume-x" id="al-sound-icon" aria-hidden="true"></i>
         <span id="al-sound-label">Sound off</span>
+      </button>
+      <button class="btn" type="button" id="al-calm-toggle" aria-pressed="false" data-tooltip="Hides scores, motion and extra visual detail">
+        <i data-lucide="eye-off" id="al-calm-icon" aria-hidden="true"></i>
+        <span id="al-calm-label">Calm screen</span>
       </button>
       <button class="btn btn-primary" type="button" data-view="learner" aria-pressed="true">
         <i data-lucide="sparkles" aria-hidden="true"></i>
@@ -1204,24 +1300,24 @@ svg {
 
         <div class="al-finish">
           <div>
-            <h2>Choose your runtime</h2>
-            <div class="text-muted">This changes what appears in your rows.</div>
+            <h2>What feels possible today?</h2>
+            <div class="text-muted">Choose the gentlest option that fits. You can change it anytime.</div>
           </div>
           <span class="viz-badge">Autoplay off</span>
         </div>
 
-        <div class="al-energy" aria-label="Choose today's energy">
-          <button class="btn" type="button" data-energy="low" aria-pressed="false">
-            <i data-lucide="battery-low" aria-hidden="true"></i>
-            3 min
+        <div class="al-energy" aria-label="Choose what feels possible today">
+          <button class="btn al-checkin" type="button" data-energy="low" aria-pressed="false">
+            <span class="al-checkin-icon" aria-hidden="true">👀</span>
+            <span class="al-checkin-copy"><strong>Watch something</strong><small>No answers needed</small></span>
           </button>
-          <button class="btn btn-primary" type="button" data-energy="medium" aria-pressed="true">
-            <i data-lucide="battery-medium" aria-hidden="true"></i>
-            5–7 min
+          <button class="btn btn-primary al-checkin" type="button" data-energy="medium" aria-pressed="true">
+            <span class="al-checkin-icon" aria-hidden="true">✨</span>
+            <span class="al-checkin-copy"><strong>One tiny win</strong><small>One picture · one tap</small></span>
           </button>
-          <button class="btn" type="button" data-energy="high" aria-pressed="false">
-            <i data-lucide="battery-full" aria-hidden="true"></i>
-            Up to 10 min
+          <button class="btn al-checkin" type="button" data-energy="high" aria-pressed="false">
+            <span class="al-checkin-icon" aria-hidden="true">🚀</span>
+            <span class="al-checkin-copy"><strong>I've got some energy</strong><small>A little more challenge</small></span>
           </button>
         </div>
 
@@ -1229,7 +1325,7 @@ svg {
           <div class="al-finish">
             <div>
               <h2>Top picks for Aria</h2>
-              <div class="text-muted" id="al-energy-note">Three fresh choices. One is enough.</div>
+              <div class="text-muted" id="al-energy-note">One picture, one tap, then done.</div>
             </div>
             <span class="viz-badge">One-tap answers</span>
           </div>
@@ -1252,12 +1348,30 @@ svg {
     </div>
 
     <div class="al-stack" id="al-mission" hidden>
-      <div class="al-finish">
+      <div class="al-finish al-mission-toolbar">
         <button class="btn btn-ghost" type="button" id="al-back">
           <i data-lucide="arrow-left" aria-hidden="true"></i>
-          Change mission
+          Swap episode
         </button>
-        <span class="viz-badge" id="al-mission-time">5 min · +15 XP</span>
+        <div class="viz-row">
+          <button class="btn btn-ghost" type="button" id="al-break-button">
+            <i data-lucide="pause" aria-hidden="true"></i>
+            I need a break
+          </button>
+          <span class="viz-badge" id="al-mission-time">5 min · +15 XP</span>
+        </div>
+      </div>
+
+      <div class="al-break-card al-stack" id="al-break-card" hidden>
+        <div>
+          <div class="text-small text-muted al-kicker">PAUSE SAVED</div>
+          <h2>Nothing is running without you.</h2>
+          <p>Drop your shoulders, get some water, stretch, or simply step away. Your place stays here.</p>
+        </div>
+        <div class="al-mission-actions">
+          <button class="btn btn-primary" type="button" id="al-return-button">I'm ready</button>
+          <button class="btn" type="button" id="al-break-finish">Stop for today</button>
+        </div>
       </div>
 
       <div class="al-stepper" aria-label="Mission progress: question, answer, reward">
@@ -1269,6 +1383,21 @@ svg {
       <div>
         <div class="text-small text-muted" id="al-mission-subject">MATHS · STABLE MODE</div>
         <h2 id="al-mission-title">Feed mix quick win</h2>
+      </div>
+
+      <div class="al-route" aria-label="Now, next and done">
+        <div class="al-route-step is-now">
+          <span class="al-route-label">Now</span>
+          <strong id="al-route-now">Look at the picture</strong>
+        </div>
+        <div class="al-route-step">
+          <span class="al-route-label">Next</span>
+          <strong id="al-route-next">Tap one answer</strong>
+        </div>
+        <div class="al-route-step">
+          <span class="al-route-label">Done</span>
+          <strong id="al-route-done">Bank the win and stop</strong>
+        </div>
       </div>
 
       <div class="al-question-visual" id="al-question-visual"></div>
@@ -1294,6 +1423,17 @@ svg {
 
       <div class="al-answers" id="al-answers" aria-label="Answer choices"></div>
       <div class="al-feedback text-muted" id="al-feedback" aria-live="polite"></div>
+      <div class="al-mission-actions">
+        <button class="btn" type="button" id="al-watch-only" hidden>
+          <i data-lucide="play-circle" aria-hidden="true"></i>
+          Watch only
+        </button>
+        <button class="btn btn-primary" type="button" id="al-watch-complete" hidden>
+          <i data-lucide="check-circle-2" aria-hidden="true"></i>
+          Bank my check-in
+        </button>
+        <button class="btn btn-ghost" type="button" id="al-not-today">Not today</button>
+      </div>
     </div>
 
     <div class="al-stack" id="al-reward" hidden>
@@ -1307,32 +1447,40 @@ svg {
         <div class="al-finish">
           <div>
             <div class="text-small text-muted">WIN BANKED</div>
-            <h2><span class="al-burst" id="al-burst">✨</span> Episode complete.</h2>
+            <h2><span class="al-burst" id="al-burst">✨</span> <span id="al-reward-title">Episode complete.</span></h2>
           </div>
           <span class="viz-badge" id="al-earned">+15 XP · Rosette 4</span>
         </div>
         <p id="al-reward-copy">You spotted the pattern and finished before it became a drag. No next episode will start automatically.</p>
       </div>
 
-      <div>
-        <h2>Pick your finish</h2>
-        <div class="text-muted">The reward ends the session—it never opens an endless feed.</div>
+      <div class="al-stack" id="al-reward-options">
+        <div>
+          <h2>Pick your finish</h2>
+          <div class="text-muted">The reward ends the session—it never opens an endless feed.</div>
+        </div>
+        <div class="al-rewards">
+          <button class="btn" type="button" data-reward="fact">
+            <i data-lucide="badge-help" aria-hidden="true"></i>
+            Reveal a horse fact
+          </button>
+          <button class="btn" type="button" data-reward="choice">
+            <i data-lucide="palette" aria-hidden="true"></i>
+            Choose tomorrow's drop
+          </button>
+          <button class="btn btn-primary" type="button" data-reward="finish">
+            <i data-lucide="check-circle-2" aria-hidden="true"></i>
+            Bank it and finish
+          </button>
+        </div>
+        <div class="al-feedback text-muted" id="al-reward-message" aria-live="polite"></div>
       </div>
-      <div class="al-rewards">
-        <button class="btn" type="button" data-reward="fact">
-          <i data-lucide="badge-help" aria-hidden="true"></i>
-          Reveal a horse fact
-        </button>
-        <button class="btn" type="button" data-reward="choice">
-          <i data-lucide="palette" aria-hidden="true"></i>
-          Choose tomorrow's drop
-        </button>
-        <button class="btn btn-primary" type="button" data-reward="finish">
-          <i data-lucide="check-circle-2" aria-hidden="true"></i>
-          Bank it and finish
-        </button>
+      <div class="al-session-ended al-stack" id="al-session-ended" hidden>
+        <div class="text-small text-muted al-kicker">SESSION COMPLETE</div>
+        <h2>All done. Nothing else is waiting.</h2>
+        <p>Your win is safe on this device. You can close this page and do something you fancy.</p>
+        <button class="btn" type="button" id="al-home-after-finish">Back to home</button>
       </div>
-      <div class="al-feedback text-muted" id="al-reward-message" aria-live="polite"></div>
     </div>
   </section>
 
@@ -1918,12 +2066,28 @@ svg {
       return Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
     }
 
+    function getAllMissions() {
+      return missionSets.low.concat(missionSets.medium, missionSets.high);
+    }
+
+    function getWatchableMissions() {
+      return getAllMissions().filter(function (mission) {
+        return Boolean(mission.bitesize);
+      });
+    }
+
     function findMission(title) {
-      var allMissions = missionSets.low.concat(missionSets.medium, missionSets.high);
+      var allMissions = getAllMissions();
       for (var index = 0; index < allMissions.length; index += 1) {
         if (allMissions[index].title === title) return allMissions[index];
       }
       return missionSets.medium[0];
+    }
+
+    function getWatchMission(preferred) {
+      if (preferred && preferred.bitesize) return preferred;
+      var watchable = getWatchableMissions();
+      return watchable[localDaySeed() % watchable.length];
     }
 
     var featuredEpisode = featureEpisodes[localDaySeed() % featureEpisodes.length];
@@ -1951,7 +2115,9 @@ svg {
       noLostStreaks: savedState.noLostStreaks !== false,
       firstWin: savedState.firstWin !== false,
       soundEnabled: savedState.soundEnabled === true,
+      calmEnabled: savedState.calmEnabled === true,
       selected: null,
+      watchOnly: false,
       completedThisRun: false
     };
 
@@ -1979,6 +2145,18 @@ svg {
       button.classList.toggle("btn-primary", state.soundEnabled);
       label.textContent = state.soundEnabled ? "Sound on" : "Sound off";
       if (icon) icon.setAttribute("data-lucide", state.soundEnabled ? "volume-2" : "volume-x");
+      refreshIcons();
+    }
+
+    function updateCalmControl() {
+      var button = root.querySelector("#al-calm-toggle");
+      var label = root.querySelector("#al-calm-label");
+      var icon = root.querySelector("#al-calm-icon");
+      root.setAttribute("data-calm", String(state.calmEnabled));
+      button.setAttribute("aria-pressed", String(state.calmEnabled));
+      button.classList.toggle("btn-primary", state.calmEnabled);
+      label.textContent = state.calmEnabled ? "Calm on" : "Calm screen";
+      if (icon) icon.setAttribute("data-lucide", state.calmEnabled ? "eye" : "eye-off");
       refreshIcons();
     }
 
@@ -2036,7 +2214,8 @@ svg {
         ceilingEnabled: state.ceilingEnabled,
         noLostStreaks: state.noLostStreaks,
         firstWin: state.firstWin,
-        soundEnabled: state.soundEnabled
+        soundEnabled: state.soundEnabled,
+        calmEnabled: state.calmEnabled
       };
       try {
         window.localStorage.setItem(storageKey, JSON.stringify(payload));
@@ -2136,8 +2315,39 @@ svg {
       root.querySelector("#al-feature-art-visual").innerHTML = visualFor(featuredMission);
       root.querySelector("#al-feature-art-label").textContent = featuredEpisode.artLabel;
       root.querySelector("#al-feature-art").setAttribute("aria-label", "Abstract cover artwork for " + featuredEpisode.title);
-      root.querySelector("#al-feature-play").setAttribute("aria-label", "Play " + featuredEpisode.title + ", " + featuredMission.time);
       root.querySelector("#al-feature-note").textContent = "";
+      updateModeLabels();
+    }
+
+    function updateModeLabels() {
+      var isWatch = state.energy === "low";
+      var featureButton = root.querySelector("#al-feature-play");
+      var watchMission = getWatchMission(featuredMission);
+      var label = isWatch ? "Watch a short clip" : "Play episode";
+      if (isWatch) {
+        root.querySelector("#al-feature-kicker").textContent = "WATCH-ONLY PICK · NO ANSWERS";
+        root.querySelector("#al-feature-title").textContent = watchMission.title;
+        root.querySelector("#al-feature-copy").textContent = "A short BBC Bitesize refresher. Watch what feels useful, then bank showing up.";
+        root.querySelector("#al-feature-subject").textContent = watchMission.subject.split(" · ")[0];
+        root.querySelector("#al-feature-time").textContent = watchMission.bitesize.duration;
+        root.querySelector("#al-feature-art-visual").innerHTML = visualFor(watchMission);
+        root.querySelector("#al-feature-art-label").textContent = "Short · Visual · No test";
+      } else {
+        root.querySelector("#al-feature-kicker").textContent = "FEATURED FOR ARIA · EPISODE " +
+          (featureEpisodes.indexOf(featuredEpisode) + 1) + " OF " + featureEpisodes.length + " · CHANGES DAILY";
+        root.querySelector("#al-feature-title").textContent = featuredEpisode.title;
+        root.querySelector("#al-feature-copy").textContent = featuredEpisode.copy;
+        root.querySelector("#al-feature-subject").textContent = featuredEpisode.subject;
+        root.querySelector("#al-feature-time").textContent = featuredMission.time;
+        root.querySelector("#al-feature-art-visual").innerHTML = visualFor(featuredMission);
+        root.querySelector("#al-feature-art-label").textContent = featuredEpisode.artLabel;
+      }
+      featureButton.innerHTML = '<i data-lucide="' + (isWatch ? "play-circle" : "play") + '" aria-hidden="true"></i> ' + label;
+      featureButton.setAttribute(
+        "aria-label",
+        (isWatch ? "Watch " + watchMission.title + ", " + watchMission.bitesize.duration : "Play " + featuredEpisode.title + ", " + featuredMission.time)
+      );
+      refreshIcons();
     }
 
     function renderCatalog(host, list, offset) {
@@ -2146,6 +2356,7 @@ svg {
         var article = document.createElement("article");
         var series = ((index + offset) % 6) + 1;
         var match = Math.max(84, 98 - ((index + offset) * 3));
+        var actionLabel = state.energy === "low" ? "Watch" : "Play";
         article.className = "al-poster";
         article.style.setProperty("--al-poster-tone", "var(--viz-series-" + series + ")");
         article.innerHTML =
@@ -2158,12 +2369,15 @@ svg {
             '<strong>' + item.title + '</strong>' +
             '<span class="al-mission-meta"><span class="al-match">' + match + '% match</span><span class="text-muted">' + item.time + '</span></span>' +
           '</div>' +
-          '<button class="btn" type="button"><i data-lucide="play" aria-hidden="true"></i> Play</button>';
+          '<button class="btn" type="button"><i data-lucide="' + (state.energy === "low" ? "play-circle" : "play") + '" aria-hidden="true"></i> ' + actionLabel + '</button>';
         var playButton = article.querySelector("button");
-        playButton.setAttribute("aria-label", "Play " + item.title + ", " + item.time + ", earns " + item.xp + " XP");
+        playButton.setAttribute(
+          "aria-label",
+          actionLabel + " " + item.title + ", " + item.time + ", earns " + (state.energy === "low" ? 5 : item.xp) + " XP"
+        );
         playButton.disabled = state.ceilingEnabled && state.dailyMinutes >= state.dailyCap;
         playButton.addEventListener("click", function () {
-          openMission(item);
+          openMission(item, state.energy === "low");
         });
         host.appendChild(article);
       });
@@ -2185,30 +2399,36 @@ svg {
     }
 
     function renderMissions() {
-      var topList = dailyPicks(missionSets[state.energy], 0);
+      var topSource = state.energy === "low" ? getWatchableMissions() : missionSets[state.energy];
+      var topList = dailyPicks(topSource, 0);
       if (state.firstWin && state.energy !== "low") {
         topList[0] = dailyPicks(missionSets.low, 6)[0];
       }
       renderCatalog(missionsHost, topList, 0);
-      var quickList = state.energy === "low" ? missionSets.medium : missionSets.low;
+      var quickList = state.energy === "low"
+        ? getWatchableMissions()
+        : (state.energy === "high" ? missionSets.medium : missionSets.low);
       renderCatalog(quickMissionsHost, dailyPicks(quickList, 3), 3);
       refreshIcons();
     }
 
-    function openMission(item) {
+    function openMission(item, forceWatchOnly) {
       if (state.ceilingEnabled && state.dailyMinutes >= state.dailyCap) {
         root.querySelector("#al-energy-note").textContent = "Today's learning window is complete. Nothing resets or disappears—come back tomorrow.";
         return;
       }
       playSound("open");
-      state.selected = item;
+      state.selected = forceWatchOnly || state.energy === "low" ? getWatchMission(item) : item;
+      state.watchOnly = Boolean(forceWatchOnly || state.energy === "low");
       chooser.hidden = true;
       rewardPanel.hidden = true;
       missionPanel.hidden = false;
-      feedback.textContent = "Pick the answer that feels most likely.";
+      missionPanel.classList.remove("is-paused");
+      root.querySelector("#al-break-card").hidden = true;
+      root.querySelector("#al-reward-options").hidden = false;
+      root.querySelector("#al-session-ended").hidden = true;
       root.querySelector("#al-mission-subject").textContent = state.selected.subject;
       root.querySelector("#al-mission-title").textContent = state.selected.title;
-      root.querySelector("#al-mission-time").textContent = state.selected.time + " · +" + state.selected.xp + " XP";
       root.querySelector("#al-question-text").textContent = state.selected.question;
       root.querySelector("#al-question-visual").innerHTML = visualFor(state.selected);
 
@@ -2242,6 +2462,38 @@ svg {
         });
         answersHost.appendChild(answerButton);
       });
+      applyMissionMode(state.watchOnly);
+    }
+
+    function applyMissionMode(watchOnly) {
+      state.watchOnly = Boolean(watchOnly && state.selected && state.selected.bitesize);
+      var question = missionPanel.querySelector(".al-question");
+      var answersHost = root.querySelector("#al-answers");
+      var watchOnlyButton = root.querySelector("#al-watch-only");
+      var watchCompleteButton = root.querySelector("#al-watch-complete");
+      var bitesizeKicker = root.querySelector(".al-bitesize-kicker");
+
+      question.hidden = state.watchOnly;
+      answersHost.hidden = state.watchOnly;
+      watchCompleteButton.hidden = !state.watchOnly;
+      watchOnlyButton.hidden = state.watchOnly || !state.selected.bitesize;
+
+      if (state.watchOnly) {
+        root.querySelector("#al-route-now").textContent = "Open the short clip";
+        root.querySelector("#al-route-next").textContent = "Watch what feels useful";
+        root.querySelector("#al-route-done").textContent = "Bank showing up";
+        root.querySelector("#al-mission-time").textContent = "Short clip · +5 XP";
+        feedback.textContent = "No question is waiting. Watch as much as feels useful, then bank the check-in.";
+        bitesizeKicker.innerHTML = '<i data-lucide="play-circle" aria-hidden="true"></i> Your short clip';
+      } else {
+        root.querySelector("#al-route-now").textContent = "Look at the picture";
+        root.querySelector("#al-route-next").textContent = "Tap one answer";
+        root.querySelector("#al-route-done").textContent = "Bank the win and stop";
+        root.querySelector("#al-mission-time").textContent = state.selected.time + " · +" + state.selected.xp + " XP";
+        feedback.textContent = "Pick the answer that feels most likely.";
+        bitesizeKicker.innerHTML = '<i data-lucide="play-circle" aria-hidden="true"></i> Optional bonus clip';
+      }
+      refreshIcons();
     }
 
     function checkAnswer(answerIndex, answerButton) {
@@ -2259,21 +2511,30 @@ svg {
     }
 
     function showReward() {
+      var earnedXp = state.watchOnly ? 5 : state.selected.xp;
+      var earnedMinutes = state.watchOnly
+        ? Math.max(1, parseInt(state.selected.bitesize.duration, 10) || 1)
+        : parseInt(state.selected.time, 10);
       playSound("reward");
       missionPanel.hidden = true;
       rewardPanel.hidden = false;
       if (!state.completedThisRun) {
-        state.xp += state.selected.xp;
+        state.xp += earnedXp;
         state.rosettes += 1;
         state.missions += 1;
-        state.minutes += parseInt(state.selected.time, 10);
+        state.minutes += earnedMinutes;
         state.dailyMissions += 1;
-        state.dailyMinutes += parseInt(state.selected.time, 10);
+        state.dailyMinutes += earnedMinutes;
         state.completedThisRun = true;
       }
-      root.querySelector("#al-earned").textContent = "+" + state.selected.xp + " XP · Rosette " + state.rosettes;
-      root.querySelector("#al-reward-copy").textContent = state.selected.success + " You finished while it still felt achievable. Autoplay stays off.";
+      root.querySelector("#al-reward-title").textContent = state.watchOnly ? "Showing up counts." : "Episode complete.";
+      root.querySelector("#al-earned").textContent = "+" + earnedXp + " XP · Rosette " + state.rosettes;
+      root.querySelector("#al-reward-copy").textContent = state.watchOnly
+        ? "You chose a short refresher and checked in. That is enough for today. Nothing else will start."
+        : state.selected.success + " You finished while it still felt achievable. Autoplay stays off.";
       root.querySelector("#al-reward-message").textContent = "";
+      root.querySelector("#al-reward-options").hidden = false;
+      root.querySelector("#al-session-ended").hidden = true;
       var burst = root.querySelector("#al-burst");
       burst.classList.remove("is-celebrating");
       void burst.offsetWidth;
@@ -2284,10 +2545,15 @@ svg {
 
     function resetToChooser() {
       state.selected = null;
+      state.watchOnly = false;
       state.completedThisRun = false;
       chooser.hidden = false;
       missionPanel.hidden = true;
+      missionPanel.classList.remove("is-paused");
+      root.querySelector("#al-break-card").hidden = true;
       rewardPanel.hidden = true;
+      root.querySelector("#al-reward-options").hidden = false;
+      root.querySelector("#al-session-ended").hidden = true;
       renderMissions();
     }
 
@@ -2315,11 +2581,12 @@ svg {
           peer.classList.toggle("btn-primary", active);
         });
         var notes = {
-          low: "Ultra-light choices. Watching or listening counts.",
-          medium: "Three fresh choices. One is enough.",
+          low: "Watch only. No answer is waiting and stopping early still counts.",
+          medium: "One picture, one tap, then done.",
           high: "A little more challenge, still with a clear finish."
         };
         root.querySelector("#al-energy-note").textContent = notes[state.energy];
+        updateModeLabels();
         renderMissions();
       });
     });
@@ -2333,12 +2600,18 @@ svg {
       if (state.soundEnabled) playSound("on");
     });
 
+    root.querySelector("#al-calm-toggle").addEventListener("click", function () {
+      state.calmEnabled = !state.calmEnabled;
+      updateCalmControl();
+      saveState();
+    });
+
     root.querySelector("#al-feature-play").addEventListener("click", function () {
-      openMission(featuredMission);
+      openMission(featuredMission, state.energy === "low");
     });
 
     root.querySelector("#al-resume").addEventListener("click", function () {
-      openMission(missionSets.medium[0]);
+      openMission(missionSets.medium[0], state.energy === "low");
     });
 
     root.querySelector("#al-feature-info").addEventListener("click", function () {
@@ -2352,6 +2625,42 @@ svg {
       saveState();
     });
 
+    root.querySelector("#al-break-button").addEventListener("click", function () {
+      playSound("rest");
+      missionPanel.classList.add("is-paused");
+      root.querySelector("#al-break-card").hidden = false;
+      root.querySelector("#al-return-button").focus();
+    });
+
+    root.querySelector("#al-return-button").addEventListener("click", function () {
+      playSound("tap");
+      missionPanel.classList.remove("is-paused");
+      root.querySelector("#al-break-card").hidden = true;
+      root.querySelector("#al-break-button").focus();
+    });
+
+    root.querySelector("#al-break-finish").addEventListener("click", function () {
+      resetToChooser();
+      root.querySelector("#al-energy-note").textContent = "Break chosen. Your place was saved, and nothing has been lost.";
+      saveState();
+    });
+
+    root.querySelector("#al-watch-only").addEventListener("click", function () {
+      playSound("tap");
+      applyMissionMode(true);
+    });
+
+    root.querySelector("#al-watch-complete").addEventListener("click", showReward);
+
+    root.querySelector("#al-not-today").addEventListener("click", function () {
+      playSound("rest");
+      resetToChooser();
+      root.querySelector("#al-energy-note").textContent = "Not today chosen. That was good self-management; nothing has been lost.";
+      saveState();
+    });
+
+    root.querySelector("#al-home-after-finish").addEventListener("click", resetToChooser);
+
     Array.prototype.forEach.call(root.querySelectorAll("[data-reward]"), function (button) {
       button.addEventListener("click", function () {
         playSound("tap");
@@ -2361,7 +2670,13 @@ svg {
           choice: "Tomorrow's first drop is now set to Science + Horses.",
           finish: "Banked. You're done for today—go and do something you actually fancy."
         };
-        root.querySelector("#al-reward-message").textContent = messages[reward];
+        if (reward === "finish") {
+          root.querySelector("#al-reward-options").hidden = true;
+          root.querySelector("#al-session-ended").hidden = false;
+          root.querySelector("#al-home-after-finish").focus();
+        } else {
+          root.querySelector("#al-reward-message").textContent = messages[reward];
+        }
         saveState();
       });
     });
@@ -2396,17 +2711,20 @@ svg {
       state.noLostStreaks = true;
       state.firstWin = true;
       state.soundEnabled = false;
+      state.calmEnabled = false;
       state.selected = null;
+      state.watchOnly = false;
       state.completedThisRun = false;
       Array.prototype.forEach.call(root.querySelectorAll("[data-energy]"), function (button) {
         var active = button.getAttribute("data-energy") === "medium";
         button.setAttribute("aria-pressed", String(active));
         button.classList.toggle("btn-primary", active);
       });
-      root.querySelector("#al-energy-note").textContent = "Three fresh choices. One is enough.";
+      root.querySelector("#al-energy-note").textContent = "One picture, one tap, then done.";
       root.querySelector("#al-feature-note").textContent = "";
       updateProgress();
       updateSoundControl();
+      updateCalmControl();
       renderFeaturedEpisode();
       saveState();
       resetToChooser();
@@ -2414,6 +2732,7 @@ svg {
 
     updateProgress();
     updateSoundControl();
+    updateCalmControl();
     renderFeaturedEpisode();
     renderMissions();
     refreshIcons();
