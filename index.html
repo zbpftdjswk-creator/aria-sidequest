@@ -916,6 +916,31 @@ svg {
     max-height: 10rem;
   }
 
+  #aria-launchpad .al-bitesize-card {
+    align-items: center;
+    background:
+      linear-gradient(120deg, color-mix(in srgb, var(--viz-series-5) 16%, var(--card)), var(--card));
+    border: 1px solid color-mix(in srgb, var(--viz-series-5) 34%, var(--border));
+    border-radius: 0.8rem;
+    display: grid;
+    gap: 0.8rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 0.8rem;
+  }
+
+  #aria-launchpad .al-bitesize-copy {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  #aria-launchpad .al-bitesize-kicker {
+    align-items: center;
+    color: var(--viz-series-5);
+    display: flex;
+    gap: 0.35rem;
+  }
+
   #aria-launchpad .al-match {
     color: var(--foreground);
   }
@@ -1029,6 +1054,16 @@ svg {
 
     #aria-launchpad .al-continue {
       grid-template-columns: 1fr;
+    }
+
+    #aria-launchpad .al-bitesize-card {
+      align-items: stretch;
+      grid-template-columns: 1fr;
+    }
+
+    #aria-launchpad .al-bitesize-card .btn {
+      justify-content: center;
+      width: 100%;
     }
 
     #aria-launchpad .al-energy,
@@ -1238,6 +1273,21 @@ svg {
 
       <div class="al-question-visual" id="al-question-visual"></div>
 
+      <div class="al-bitesize-card" id="al-bitesize-card" hidden>
+        <div class="al-bitesize-copy">
+          <div class="al-bitesize-kicker al-kicker text-small">
+            <i data-lucide="play-circle" aria-hidden="true"></i>
+            Optional bonus clip
+          </div>
+          <strong id="al-bitesize-title">BBC Bitesize refresher</strong>
+          <span class="text-small text-muted" id="al-bitesize-meta">Short video · opens in a new tab</span>
+        </div>
+        <a class="btn btn-primary" id="al-bitesize-link" target="_blank" rel="noopener noreferrer">
+          Watch on BBC
+          <i data-lucide="external-link" aria-hidden="true"></i>
+        </a>
+      </div>
+
       <div class="al-question">
         <p id="al-question-text"></p>
       </div>
@@ -1382,7 +1432,13 @@ svg {
           answers: ["Tense", "Celebratory", "Bored"],
           correct: 0,
           hint: "The darkness and sudden movement are clues.",
-          success: "Yes—those details create tension without saying “it was scary.”"
+          success: "Yes—those details create tension without saying “it was scary.”",
+          bitesize: {
+            url: "https://www.bbc.co.uk/bitesize/topics/zbt4s82/watch/zkyjg2p",
+            title: "Inference: solve the clues",
+            duration: "1:07",
+            note: "gentle recap"
+          }
         },
         {
           subject: "MATHS · PHOTO-FREE QUICK WIN",
@@ -1406,7 +1462,13 @@ svg {
           answers: ["1 scoop", "2 scoops", "4 scoops"],
           correct: 1,
           hint: "The chaff doubled from 2 to 4, so the mix must do the same.",
-          success: "Exactly—2:1 becomes 4:2. Same ratio, bigger feed."
+          success: "Exactly—2:1 becomes 4:2. Same ratio, bigger feed.",
+          bitesize: {
+            url: "https://www.bbc.co.uk/bitesize/topics/zghnb9q/watch/zmpk8xs",
+            title: "Ratio in everyday situations",
+            duration: "3:02",
+            note: "real-world recap"
+          }
         },
         {
           subject: "SCIENCE · QUICK MYSTERY",
@@ -1417,7 +1479,13 @@ svg {
           answers: ["Gravitational potential", "Chemical", "Nuclear"],
           correct: 0,
           hint: "Which store increases as height increases?",
-          success: "Correct—greater height means more gravitational potential energy."
+          success: "Correct—greater height means more gravitational potential energy.",
+          bitesize: {
+            url: "https://www.bbc.co.uk/bitesize/topics/z6yb7v4/watch/zq9g239",
+            title: "Types of energy and how it is stored",
+            duration: "4:46",
+            note: "visual explainer"
+          }
         },
         {
           subject: "ENGLISH · VOICE-FIRST",
@@ -1441,7 +1509,13 @@ svg {
           answers: ["6 m/s", "10 m/s", "60 m/s"],
           correct: 1,
           hint: "Speed = distance ÷ time.",
-          success: "Correct—600 ÷ 60 = 10 metres per second."
+          success: "Correct—600 ÷ 60 = 10 metres per second.",
+          bitesize: {
+            url: "https://www.bbc.co.uk/bitesize/topics/z6yb7v4/watch/zt3s8p3",
+            title: "Brian Cox explains the speed equation",
+            duration: "1:29",
+            note: "fast visual refresher"
+          }
         },
         {
           subject: "FRENCH · SAY IT",
@@ -1452,7 +1526,13 @@ svg {
           answers: ["I ride a horse", "I feed the horse", "I like music"],
           correct: 0,
           hint: "“À cheval” means on horseback.",
-          success: "Oui—“Je monte à cheval” means “I ride a horse.”"
+          success: "Oui—“Je monte à cheval” means “I ride a horse.”",
+          bitesize: {
+            url: "https://www.bbc.co.uk/bitesize/topics/z3tkp9q/watch/zqbmg2p",
+            title: "French listening: talking about hobbies",
+            duration: "3:19",
+            note: "listening challenge"
+          }
         },
         {
           subject: "GEOGRAPHY · WEATHER CALL",
@@ -1463,7 +1543,13 @@ svg {
           answers: ["Ride at 1pm and finish before it arrives", "Ignore it because forecasts never matter", "Start at 3pm"],
           correct: 0,
           hint: "Use the forecast to reduce exposure to the hazard.",
-          success: "Exactly—using the timing helps avoid the heaviest weather."
+          success: "Exactly—using the timing helps avoid the heaviest weather.",
+          bitesize: {
+            url: "https://www.bbc.co.uk/bitesize/topics/z9y94xs/watch/zjdpkhv",
+            title: "Weather systems: fronts, rain and settled weather",
+            duration: "2:35",
+            note: "visual explainer"
+          }
         }
       ]
     };
@@ -1489,7 +1575,13 @@ svg {
         answers: ["West", "North", "East"],
         correct: 0,
         hint: "Return in the opposite direction.",
-        success: "Correct—west is opposite east."
+        success: "Correct—west is opposite east.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/zkpkywx/watch/zjhdg2p",
+          title: "Directions and turns",
+          duration: "0:57",
+          note: "gentle recap"
+        }
       },
       {
         subject: "HISTORY · TIME DROP",
@@ -1511,7 +1603,13 @@ svg {
         answers: ["Nucleus", "Cell membrane", "Cytoplasm"],
         correct: 0,
         hint: "Think of the cell's control centre.",
-        success: "Correct—the nucleus contains genetic material and controls the cell."
+        success: "Correct—the nucleus contains genetic material and controls the cell.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/z9htqyc/watch/zk2kb7h",
+          title: "Plant and animal cells compared",
+          duration: "2:58",
+          note: "visual explainer"
+        }
       },
       {
         subject: "ENGLISH · WORD MOOD",
@@ -1522,7 +1620,13 @@ svg {
         answers: ["Nervous", "Delighted", "Sleepy"],
         correct: 0,
         hint: "Imagine worrying about what may happen.",
-        success: "Yes—nervous is the closest meaning here."
+        success: "Yes—nervous is the closest meaning here.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/zbsd3qt/watch/zmwf239",
+          title: "Synonyms and antonyms",
+          duration: "0:51",
+          note: "gentle recap"
+        }
       },
       {
         subject: "COMPUTING · BINARY BITE",
@@ -1547,7 +1651,13 @@ svg {
         answers: ["£20", "£25", "£60"],
         correct: 0,
         hint: "25% is one quarter.",
-        success: "Correct—one quarter of £80 is £20."
+        success: "Correct—one quarter of £80 is £20.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/zrjm46f/watch/ztygtcw",
+          title: "Maths hacks: calculating percentages",
+          duration: "2:26",
+          note: "next-step explainer"
+        }
       },
       {
         subject: "SCIENCE · PARTICLE VIEW",
@@ -1558,7 +1668,13 @@ svg {
         answers: ["Far apart and moving randomly", "Fixed in a regular arrangement", "Close together and only vibrating"],
         correct: 0,
         hint: "Gas particles can move throughout their container.",
-        success: "Exactly—gas particles are far apart and move randomly."
+        success: "Exactly—gas particles are far apart and move randomly.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/zjty4wx/watch/zm69d6f",
+          title: "Solids, liquids and gases",
+          duration: "0:42",
+          note: "gentle visual recap"
+        }
       },
       {
         subject: "HISTORY · SOURCE CHECK",
@@ -1569,7 +1685,13 @@ svg {
         answers: ["A diary written in 1942", "A textbook published in 2025", "A modern historical novel"],
         correct: 0,
         hint: "A primary source was created during the period being studied.",
-        success: "Correct—the diary was produced at the time, although historians must still evaluate it carefully."
+        success: "Correct—the diary was produced at the time, although historians must still evaluate it carefully.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/zq4jpv4/watch/z73xvcw",
+          title: "Researching historical evidence",
+          duration: "1:10",
+          note: "source-skills recap"
+        }
       },
       {
         subject: "GEOGRAPHY · RIVER VIEW",
@@ -1580,7 +1702,13 @@ svg {
         answers: ["Outside bend", "Inside bend", "Exactly in the middle"],
         correct: 0,
         hint: "Water generally moves faster on one side of the bend.",
-        success: "Correct—faster flow usually makes erosion stronger on the outside bend."
+        success: "Correct—faster flow usually makes erosion stronger on the outside bend.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/zw63cdm/watch/zcy2tfr",
+          title: "River erosion and deposition",
+          duration: "2:03",
+          note: "real-landscape explainer"
+        }
       },
       {
         subject: "FRENCH · PREFERENCE PLAY",
@@ -1591,7 +1719,13 @@ svg {
         answers: ["I like music", "I play football", "I dislike school"],
         correct: 0,
         hint: "“J'aime” expresses a positive preference.",
-        success: "Oui—it means “I like music.”"
+        success: "Oui—it means “I like music.”",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/z3tkp9q/watch/zqbmg2p",
+          title: "French listening: talking about hobbies",
+          duration: "3:19",
+          note: "listening challenge"
+        }
       },
       {
         subject: "COMPUTING · CODE SNAP",
@@ -1616,7 +1750,13 @@ svg {
         answers: ["x = 5", "x = 7", "x = 15"],
         correct: 0,
         hint: "Subtract 4 first, then divide by 3.",
-        success: "Correct—19 − 4 = 15, and 15 ÷ 3 = 5."
+        success: "Correct—19 − 4 = 15, and 15 ÷ 3 = 5.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/zb4tqyc/watch/zh4xwsg",
+          title: "Solving equations",
+          duration: "2:19",
+          note: "next-step explainer"
+        }
       },
       {
         subject: "SCIENCE · FORCE CHECK",
@@ -1649,7 +1789,13 @@ svg {
         answers: ["Battle of Stamford Bridge", "Battle of Hastings", "William's coronation"],
         correct: 0,
         hint: "Harold fought in the north before travelling south.",
-        success: "Correct—Stamford Bridge came before Hastings and William's coronation."
+        success: "Correct—Stamford Bridge came before Hastings and William's coronation.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/zb3vjfr/watch/zsqdnk7",
+          title: "The Norman Conquest",
+          duration: "4:02",
+          note: "story refresher"
+        }
       },
       {
         subject: "COMPUTING · ALGORITHM CUT",
@@ -1660,7 +1806,13 @@ svg {
         answers: ["A sequence of instructions for solving a problem", "A physical part inside a computer", "A type of internet connection"],
         correct: 0,
         hint: "It describes steps in the correct order.",
-        success: "Correct—an algorithm is a defined sequence of instructions."
+        success: "Correct—an algorithm is a defined sequence of instructions.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/zvsc7ty/watch/zwpsyrd",
+          title: "What is an algorithm?",
+          duration: "1:12",
+          note: "gentle recap"
+        }
       },
       {
         subject: "ENGLISH · LANGUAGE LENS",
@@ -1671,7 +1823,13 @@ svg {
         answers: ["The moon was a silver coin", "The moon shone brightly", "The moon looked like a coin"],
         correct: 0,
         hint: "A metaphor says one thing is another without using “like” or “as”.",
-        success: "Correct—“the moon was a silver coin” is a metaphor."
+        success: "Correct—“the moon was a silver coin” is a metaphor.",
+        bitesize: {
+          url: "https://www.bbc.co.uk/bitesize/topics/zbsd3qt/watch/zj9hwsg",
+          title: "Metaphors and similes",
+          duration: "0:58",
+          note: "gentle recap"
+        }
       }
     ]);
 
@@ -2053,6 +2211,24 @@ svg {
       root.querySelector("#al-mission-time").textContent = state.selected.time + " · +" + state.selected.xp + " XP";
       root.querySelector("#al-question-text").textContent = state.selected.question;
       root.querySelector("#al-question-visual").innerHTML = visualFor(state.selected);
+
+      var bitesizeCard = root.querySelector("#al-bitesize-card");
+      var bitesizeLink = root.querySelector("#al-bitesize-link");
+      if (state.selected.bitesize) {
+        bitesizeCard.hidden = false;
+        bitesizeLink.href = state.selected.bitesize.url;
+        bitesizeLink.setAttribute(
+          "aria-label",
+          "Watch “" + state.selected.bitesize.title + "” on BBC Bitesize (opens in a new tab)"
+        );
+        root.querySelector("#al-bitesize-title").textContent = state.selected.bitesize.title;
+        root.querySelector("#al-bitesize-meta").textContent =
+          state.selected.bitesize.duration + " · " + state.selected.bitesize.note + " · opens in a new tab";
+      } else {
+        bitesizeCard.hidden = true;
+        bitesizeLink.removeAttribute("href");
+        bitesizeLink.removeAttribute("aria-label");
+      }
 
       var answersHost = root.querySelector("#al-answers");
       answersHost.innerHTML = "";
